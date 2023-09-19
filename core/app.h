@@ -5,3 +5,6 @@
 #include "imgui/backends/imgui_impl_opengl2.h"
 
 void app_render();
+void overview();
+// void car_state();
+// void profile();
