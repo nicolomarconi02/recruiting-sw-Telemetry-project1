@@ -46,6 +46,7 @@ int main(){
         ImGui::NewFrame();
 
         // renders tabs/buttons/...
+        DockSpaceOverViewport(GetMainViewport());
         app_render();
 
         render(window, clear_color);

@@ -1,1 +1,0 @@
-# recruiting-sw-Telemetry-project1

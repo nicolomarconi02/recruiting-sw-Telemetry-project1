@@ -3,7 +3,7 @@
 using namespace ImGui;
 
 void app_render(){
-    DockSpaceOverViewport(GetMainViewport());
+    
     if(Begin("FRAME", NULL, NULL)){
         End();
     }
