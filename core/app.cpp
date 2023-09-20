@@ -1,10 +1,11 @@
 #include "app.h"
+#include <GL/glew.h>
 
 using namespace ImGui;
 
-void app_render(){
+void app_render(GLuint carImageTexture){
     
-    overview();
+    overview(carImageTexture);
     // car_state();
     // profile();
 
