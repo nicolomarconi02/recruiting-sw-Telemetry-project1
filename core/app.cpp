@@ -3,9 +3,10 @@
 
 using namespace ImGui;
 
-void app_render(GLuint carImageTexture){
+void app_render(){
     
-    overview(carImageTexture);
+    car_preview();
+    track_session();
     // car_state();
     // profile();
 

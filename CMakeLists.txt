@@ -23,7 +23,10 @@ add_library(
     
     # Sources
     ${CMAKE_CURRENT_SOURCE_DIR}/core/app.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/core/overview.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/car_preview.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/track_session.cpp    
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/image.cpp    
+
 
 
     # GUI
