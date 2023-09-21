@@ -15,12 +15,12 @@ void car_preview(){
         }
         ImGui::Text("height: %d width: %d", imageCar.image_height, imageCar.image_width);
         ImGui::Image((void*)(intptr_t)imageCar.image_texture, ImVec2(imageCar.image_width, imageCar.image_height));
+        float xMax = ImGui::GetItemRectMax().x;
+        float xMin = ImGui::GetItemRectMin().x;
         if(ImGui::IsItemHovered()){
             ImGuiIO& io = ImGui::GetIO();
             ImGui::BeginTooltip();
-            float xMax = ImGui::GetItemRectMax().x;
-            float xMin = ImGui::GetItemRectMin().x;
-            if((io.MousePos.x > xMin * 4/3) && (io.MousePos.x < xMax * 5/3)){
+            if((io.MousePos.x > xMax * 1/3) && (io.MousePos.x < xMax * 2/3)){
                 ImGui::Text("ELECTRONIC");
             }
             else{

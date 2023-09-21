@@ -1,12 +1,15 @@
 #include "app.h"
-#include <GL/glew.h>
 
 using namespace ImGui;
 
-void app_render(){
+void app_render(TelemetryData telemetryData){
     
     car_preview();
-    track_session();
+    track_session(telemetryData);
+    electronic();
+    tyre();
+    errors();
+    profile();
     // car_state();
     // profile();
 

@@ -42,6 +42,9 @@ int main(){
     ImVec4 clear_color = ImVec4(0.06f, 0.06f, 0.06f, 0.94f);
     std::cout << "Done" << std::endl;
 
+    //genero dati per telemetria
+    TelemetryData telemetryData;
+
     while (!glfwWindowShouldClose(window))
     {
         glfwPollEvents();
@@ -61,7 +64,7 @@ int main(){
         //     ImGui::End();
         // }
 
-        app_render();
+        app_render(telemetryData);
 
         render(window, clear_color);
     }

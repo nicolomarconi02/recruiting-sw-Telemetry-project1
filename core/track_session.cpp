@@ -5,7 +5,7 @@
 Image imageTrack("../data/track.png");
 bool isTrackOpen = false;
 
-void track_session(){
+void track_session(TelemetryData telemetryData){
     if(ImGui::Begin("Track Session")){
         if(ImGui::CollapsingHeader("GPS")){
             ImGui::Text("GPS of the Track");
@@ -17,18 +17,27 @@ void track_session(){
             ImGui::Image((void*)(intptr_t)imageTrack.image_texture, ImVec2(imageTrack.image_width, imageTrack.image_height));
         }
         if(ImGui::CollapsingHeader("LAPS")){
-            if(ImGui::TreeNode("TIME")){
-                ImGui::Text("LAP TIME");
-                ImGui::TreePop();
+            int maxNumLap = telemetryData.telemetryDataPerLap.size();
+            int currentLap = 1;
+            ImGui::Text("SELECT LAP");
+            ImGui::SliderInt("", &currentLap, 1, maxNumLap);
+            ImGui::Text("CURRENT LAP %d", currentLap);
+            int maxSizeData = telemetryData.telemetryDataPerLap[currentLap-1].size();
+            float velocityArr[maxSizeData];
+            float timeArr[maxSizeData];
+            float averageVelocity = 0;
+            float finalTimeLap = 0;
+            for(int i = 0; i < maxSizeData; i++){
+                velocityArr[i] = telemetryData.telemetryDataPerLap[currentLap-1][i].getSpeed();
+                timeArr[i] = telemetryData.telemetryDataPerLap[currentLap-1][i].getlapTime();
+                averageVelocity += velocityArr[i];
             }
-            if(ImGui::TreeNode("Average Velocity")){
-                ImGui::Text("Average Velocity");
-                ImGui::TreePop();
-            }
-            if(ImGui::TreeNode("Telemetry")){
-                ImGui::Text("PLOT");
-                ImGui::TreePop();
-            }
+            finalTimeLap = telemetryData.telemetryDataPerLap[currentLap-1][maxSizeData-1].getlapTime();
+            averageVelocity = averageVelocity/maxSizeData;
+            ImGui::Text("LAP TIME %.2f", finalTimeLap);
+            ImGui::Text("Average Velocity %.2f", averageVelocity);
+            ImGui::Text("PLOT");
+            ImGui::PlotLines("Velocity/Time", velocityArr, maxSizeData, 0, "", 0, 400, ImVec2(0,200));
         }
         ImGui::End();
     }
