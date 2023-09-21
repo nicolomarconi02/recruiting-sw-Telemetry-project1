@@ -45,6 +45,9 @@ int main(){
     //genero dati per telemetria
     TelemetryData telemetryData;
 
+    //genero dati per voltaggio
+    VoltageData voltageData;
+
     while (!glfwWindowShouldClose(window))
     {
         glfwPollEvents();
@@ -64,7 +67,7 @@ int main(){
         //     ImGui::End();
         // }
 
-        app_render(telemetryData);
+        app_render(telemetryData, voltageData);
 
         render(window, clear_color);
     }

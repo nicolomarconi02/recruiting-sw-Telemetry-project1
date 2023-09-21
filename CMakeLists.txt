@@ -31,6 +31,7 @@ add_library(
     ${CMAKE_CURRENT_SOURCE_DIR}/core/profile.cpp    
     ${CMAKE_CURRENT_SOURCE_DIR}/core/image.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/core/telemetry.cpp 
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/voltage.cpp 
 
 
 

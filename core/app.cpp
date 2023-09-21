@@ -2,11 +2,11 @@
 
 using namespace ImGui;
 
-void app_render(TelemetryData telemetryData){
+void app_render(TelemetryData telemetryData, VoltageData voltageData){
     
     car_preview();
     track_session(telemetryData);
-    electronic();
+    electronic(voltageData);
     tyre();
     errors();
     profile();
