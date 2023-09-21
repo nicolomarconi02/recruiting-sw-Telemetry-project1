@@ -28,6 +28,33 @@ bool Image::LoadTextureFromFile()
     // Upload pixels into texture
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image_width, image_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image_data);
     stbi_image_free(image_data);
-
+    setSize();
     return true;
+}
+
+void Image::setSize(){
+    float prefSize = 600;
+    float ratio = (float) image_height/image_width;
+    // if((image_height < prefSize) || (image_width < prefSize)){
+        if(max(image_height,image_width) - min(image_height, image_width) <= 50){
+            //immagine "quadrata"
+            image_height = (int) prefSize;
+            image_width = (int) prefSize;
+        }
+        else{
+            image_height = (int) prefSize * ratio;
+            image_width = (int) prefSize;
+        }
+    // }
+    // else if((image_height > prefSize * 3/2) || (image_width > prefSize * 3/2)){
+    //     if(max(image_height,image_width) - min(image_height, image_width) <= 50){
+    //         //immagine "quadrata"
+    //         image_height = (int) prefSize;
+    //         image_width = (int) prefSize;
+    //     }
+    //     else{
+    //         image_height = (int) prefSize * ratio;
+    //         image_width = (int) prefSize;
+    //     }
+    // }
 }

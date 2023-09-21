@@ -13,7 +13,8 @@ void track_session(){
                 imageTrack.LoadTextureFromFile();
                 isTrackOpen = true;
             }
-            ImGui::Image((void*)(intptr_t)imageTrack.image_texture, ImVec2(imageTrack.image_width/3, imageTrack.image_height/3));
+            ImGui::Text("height: %d width: %d", imageTrack.image_height, imageTrack.image_width);
+            ImGui::Image((void*)(intptr_t)imageTrack.image_texture, ImVec2(imageTrack.image_width, imageTrack.image_height));
         }
         if(ImGui::CollapsingHeader("LAPS")){
             if(ImGui::TreeNode("TIME")){

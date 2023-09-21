@@ -14,4 +14,5 @@ class Image{
 
         Image(const char* path);
         bool LoadTextureFromFile();  
+        void setSize();
 };
