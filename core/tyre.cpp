@@ -1,7 +1,7 @@
 #include "app.h"
 
 void tyre(TemperatureData temperatureData){
-    if(ImGui::Begin("temperature", NULL, ImGuiWindowFlags_AlwaysAutoResize)){
+    if(ImGui::Begin("Tyres", NULL, ImGuiWindowFlags_AlwaysAutoResize)){
         ImGui::End();
     }
 }

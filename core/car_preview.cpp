@@ -17,16 +17,17 @@ void car_preview(VoltageData voltageData,TemperatureData temperatureData){
         ImGui::Image((void*)(intptr_t)imageCar.image_texture, ImVec2(imageCar.image_width, imageCar.image_height));
         float xMax = ImGui::GetItemRectMax().x;
         float xMin = ImGui::GetItemRectMin().x;
+        float imDim = xMax-xMin;
         if(ImGui::IsItemHovered()){
             ImGuiIO& io = ImGui::GetIO();
             ImGui::BeginTooltip();
-            if((io.MousePos.x < xMax * 1/3)){
+            if((io.MousePos.x < (xMin + imDim * 1/3))){
                 ImGui::Text("MOTOR");
                 ImGui::Text("motorTemperature: %.2f", temperatureData.motorTemperature);
                 ImGui::Text("inverterTemperature: %.2f", temperatureData.inverterTemperature);
 
             }
-            else if((io.MousePos.x > xMax * 1/3) && (io.MousePos.x < xMax * 2/3)){
+            else if((io.MousePos.x > (xMin + imDim * 1/3)) && (io.MousePos.x < (xMin + imDim * 2/3))){
                 ImGui::Text("ELECTRONIC");
                 ImGui::Text("BMSHVVoltage: %.2f", voltageData.bmsHVTotalVoltage);
                 ImGui::Text("BMSHVTemperature: %.2f", temperatureData.bmsHVTotalTemperature);
@@ -44,8 +45,6 @@ void car_preview(VoltageData voltageData,TemperatureData temperatureData){
                     ImGui::EndTable();
                 }
             }
-            ImGui::Text("x: %.2f y: %.2f", io.MousePos.x, io.MousePos.y);
-            ImGui::Text("rectXMin: %.2f rectXMax: %.2f", xMin, xMax);
 
             ImGui::EndTooltip();
         }

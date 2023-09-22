@@ -42,6 +42,15 @@ int main(){
     ImVec4 clear_color = ImVec4(0.06f, 0.06f, 0.06f, 0.94f);
     std::cout << "Done" << std::endl;
 
+    ImGuiStyle& style = ImGui::GetStyle();
+    style.CellPadding.x = 10;
+    style.CellPadding.y = 4;
+    style.FramePadding.x = 5;
+    style.FramePadding.y = 4;
+    style.WindowRounding = 12;
+    style.FrameRounding = 12;
+    style.ScrollbarRounding = 12;
+
     //genero dati per telemetria
     TelemetryData telemetryData;
 
