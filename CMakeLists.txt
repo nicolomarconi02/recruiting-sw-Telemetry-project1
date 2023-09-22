@@ -27,11 +27,13 @@ add_library(
     ${CMAKE_CURRENT_SOURCE_DIR}/core/track_session.cpp    
     ${CMAKE_CURRENT_SOURCE_DIR}/core/electronic.cpp    
     ${CMAKE_CURRENT_SOURCE_DIR}/core/tyre.cpp    
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/motor.cpp    
     ${CMAKE_CURRENT_SOURCE_DIR}/core/errors.cpp    
     ${CMAKE_CURRENT_SOURCE_DIR}/core/profile.cpp    
     ${CMAKE_CURRENT_SOURCE_DIR}/core/image.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/core/telemetry.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/core/voltage.cpp 
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/temperature.cpp 
 
 
 

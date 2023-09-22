@@ -5,31 +5,14 @@
 
 using namespace std;
 
-// class VoltageData{
-//     public:
-//         vector<VoltageData> tableHVVoltage;
-//         vector<VoltageData> tableLVVoltage;
-//         VoltageData(){
-//             generateData();
-//         } 
-        
-//         VoltageData(float h, float l){
-//             bmsHVVoltage = h;
-//             bmsLVVoltage = l;
-//         }
-//         void generateData();
-//         float getCellVoltage();
-//     private:
-//         float bmsHVVoltage;
-//         float bmsLVVoltage;
-// };
-
 class VoltageData{
     public:
         int numCellHV = 108;
         int numCellLV = 4;
         vector<float> bmsHVVoltage;
         vector<float> bmsLVVoltage;
+        float bmsHVTotalVoltage = 0;
+        float bmsLVTotalVoltage = 0;
 
         VoltageData(){
             generateData();

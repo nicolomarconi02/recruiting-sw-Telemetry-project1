@@ -48,6 +48,9 @@ int main(){
     //genero dati per voltaggio
     VoltageData voltageData;
 
+    //genero dati per temperature
+    TemperatureData temperatureData;
+
     while (!glfwWindowShouldClose(window))
     {
         glfwPollEvents();
@@ -67,7 +70,7 @@ int main(){
         //     ImGui::End();
         // }
 
-        app_render(telemetryData, voltageData);
+        app_render(telemetryData, voltageData, temperatureData);
 
         render(window, clear_color);
     }
