@@ -23,18 +23,19 @@ add_library(
     
     # Sources
     ${CMAKE_CURRENT_SOURCE_DIR}/core/app.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/core/car_preview.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/core/track_session.cpp    
-    ${CMAKE_CURRENT_SOURCE_DIR}/core/electronic.cpp    
-    ${CMAKE_CURRENT_SOURCE_DIR}/core/tyre.cpp    
-    ${CMAKE_CURRENT_SOURCE_DIR}/core/motor.cpp    
-    ${CMAKE_CURRENT_SOURCE_DIR}/core/errors.cpp    
-    ${CMAKE_CURRENT_SOURCE_DIR}/core/profile.cpp    
-    ${CMAKE_CURRENT_SOURCE_DIR}/core/image.cpp 
-    ${CMAKE_CURRENT_SOURCE_DIR}/core/telemetry.cpp 
-    ${CMAKE_CURRENT_SOURCE_DIR}/core/voltage.cpp 
-    ${CMAKE_CURRENT_SOURCE_DIR}/core/temperature.cpp 
-
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/bms.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/data.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/image.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/motor.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/telemetry.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/tyre.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/carPreviewWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/electronicWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/errorsWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/motorWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/profileWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/trackSessionWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/tyreWindow.cpp
 
 
 

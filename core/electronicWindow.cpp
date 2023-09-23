@@ -27,28 +27,28 @@ ImU32 setBgColor(float data){
     }
 }
 
-void electronic(VoltageData voltageData){
+void electronic(BMSData bmsData){
     if(ImGui::Begin("Electronic", NULL, ImGuiWindowFlags_AlwaysAutoResize)){
-        if(ImGui::CollapsingHeader("BMSHVVOLTAGE")){
-            ImGui::Text("BMSHVVOLTAGE %.2f", voltageData.bmsHVTotalVoltage);
+        if(ImGui::CollapsingHeader("BMSHVVOLTAGE (V)")){
+            ImGui::Text("BMSHVVOLTAGE %.2f", bmsData.bmsHVTotalVoltage);
             if(ImGui::BeginTable("BMSHVVOLTAGE", 12, ImGuiTableFlags_SizingFixedSame)){
                 ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed, 40.0f);  
-                for(int i = 0; i < voltageData.numCellHV; i++){
+                for(int i = 0; i < bmsData.numCellHV; i++){
                     ImGui::TableNextColumn();                
-                    ImGui::Text("%.2f", voltageData.bmsHVVoltage[i]);
-                    ImGui::TableSetBgColor(ImGuiTableBgTarget_CellBg, setBgColor(voltageData.bmsHVVoltage[i]));
+                    ImGui::Text("%.2f", bmsData.bmsHVVoltage[i]);
+                    ImGui::TableSetBgColor(ImGuiTableBgTarget_CellBg, setBgColor(bmsData.bmsHVVoltage[i]));
                 }
                 ImGui::EndTable();
             }
         }
-        if(ImGui::CollapsingHeader("BMSLVVOLTAGE")){
-            ImGui::Text("BMSHVVOLTAGE %.2f", voltageData.bmsLVTotalVoltage);
+        if(ImGui::CollapsingHeader("BMSLVVOLTAGE (V)")){
+            ImGui::Text("BMSHVVOLTAGE %.2f", bmsData.bmsLVTotalVoltage);
             if(ImGui::BeginTable("BMSHVVOLTAGE", 4, ImGuiTableFlags_SizingFixedSame)){
                 ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed, 40.0f);  
-                for(int i = 0; i < voltageData.numCellLV; i++){
+                for(int i = 0; i < bmsData.numCellLV; i++){
                     ImGui::TableNextColumn();                
-                    ImGui::Text("%.2f", voltageData.bmsLVVoltage[i]);
-                    ImGui::TableSetBgColor(ImGuiTableBgTarget_CellBg, setBgColor(voltageData.bmsLVVoltage[i]));
+                    ImGui::Text("%.2f", bmsData.bmsLVVoltage[i]);
+                    ImGui::TableSetBgColor(ImGuiTableBgTarget_CellBg, setBgColor(bmsData.bmsLVVoltage[i]));
                 }
                 ImGui::EndTable();
             }

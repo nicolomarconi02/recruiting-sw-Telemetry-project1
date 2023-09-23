@@ -6,7 +6,7 @@
 Image imageCar("../data/car.png");
 bool isCarOpen = false;
 
-void car_preview(VoltageData voltageData,TemperatureData temperatureData){
+void car_preview(BMSData bmsData, TyreData tyreData, MotorData motorData){
     if(ImGui::Begin("Car Preview", NULL, ImGuiWindowFlags_AlwaysAutoResize)){
         ImGui::Text("CAR IMAGE");
         if(!isCarOpen){
@@ -23,24 +23,24 @@ void car_preview(VoltageData voltageData,TemperatureData temperatureData){
             ImGui::BeginTooltip();
             if((io.MousePos.x < (xMin + imDim * 1/3))){
                 ImGui::Text("MOTOR");
-                ImGui::Text("motorTemperature: %.2f", temperatureData.motorTemperature);
-                ImGui::Text("inverterTemperature: %.2f", temperatureData.inverterTemperature);
+                ImGui::Text("motorTemperature: %.2f °C", motorData.motorTemperature);
+                ImGui::Text("inverterTemperature: %.2f °C", motorData.inverterTemperature);
 
             }
-            else if((io.MousePos.x > (xMin + imDim * 1/3)) && (io.MousePos.x < (xMin + imDim * 2/3))){
+            else if((io.MousePos.x >= (xMin + imDim * 1/3)) && (io.MousePos.x < (xMin + imDim * 2/3))){
                 ImGui::Text("ELECTRONIC");
-                ImGui::Text("BMSHVVoltage: %.2f", voltageData.bmsHVTotalVoltage);
-                ImGui::Text("BMSHVTemperature: %.2f", temperatureData.bmsHVTotalTemperature);
-                ImGui::Text("BMSLVVoltage: %.2f", voltageData.bmsLVTotalVoltage);
-                ImGui::Text("BMSLVTemperature: %.2f", temperatureData.bmsLVTotalTemperature);
+                ImGui::Text("BMSHVVoltage: %.2f V", bmsData.bmsHVTotalVoltage);
+                ImGui::Text("BMSHVTemperature: %.2f °C", bmsData.bmsHVTotalTemperature);
+                ImGui::Text("BMSLVVoltage: %.2f V", bmsData.bmsLVTotalVoltage);
+                ImGui::Text("BMSLVTemperature: %.2f °C", bmsData.bmsLVTotalTemperature);
             }
             else{
                 ImGui::Text("TYRE");
                 if(ImGui::BeginTable("BMSHVVOLTAGE", 2, ImGuiTableFlags_SizingFixedSame)){
-                    for(int i = 0; i < temperatureData.numTyres; i++){
+                    for(int i = 0; i < tyreData.numTyres; i++){
                         ImGui::TableNextColumn();                
-                        ImGui::Text("%.2f", temperatureData.tyresTemperature[i]);
-                        // ImGui::TableSetBgColor(ImGuiTableBgTarget_CellBg, setBgColor(voltageData.bmsHVVoltage[i]));
+                        ImGui::Text("%.2f C°", tyreData.tyresTemperature[i]);
+                        // ImGui::TableSetBgColor(ImGuiTableBgTarget_CellBg, setBgColor(bmsData.bmsHVVoltage[i]));
                     }
                     ImGui::EndTable();
                 }

@@ -2,11 +2,11 @@
 #include "app.h"
 #include "image.h"
 
-Image imageTrack("../data/track.png");
+Image imageTrack("../data/Hockenheim2012.jpg");
 bool isTrackOpen = false;
 
 void track_session(TelemetryData telemetryData){
-    if(ImGui::Begin("Track Session")){
+    if(ImGui::Begin("Track Session", NULL, ImGuiWindowFlags_AlwaysAutoResize)){
         if(ImGui::CollapsingHeader("GPS")){
             ImGui::Text("GPS of the Track");
             if(!isTrackOpen){
@@ -34,8 +34,8 @@ void track_session(TelemetryData telemetryData){
             }
             finalTimeLap = telemetryData.telemetryDataPerLap[currentLap-1][maxSizeData-1].getlapTime();
             averageVelocity = averageVelocity/maxSizeData;
-            ImGui::Text("LAP TIME %.2f", finalTimeLap);
-            ImGui::Text("Average Velocity %.2f", averageVelocity);
+            ImGui::Text("LAP TIME %.2f seconds", finalTimeLap);
+            ImGui::Text("Average Velocity %.2f km/h", averageVelocity);
             ImGui::Text("PLOT");
             ImGui::PlotLines("Velocity/Time", velocityArr, maxSizeData, 0, "", 0, 400, ImVec2(0,200));
         }

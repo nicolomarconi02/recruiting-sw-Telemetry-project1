@@ -5,14 +5,15 @@
 #include "imgui/backends/imgui_impl_opengl2.h"
 #include <GL/glew.h>
 #include "telemetry.h"
-#include "voltage.h"
-#include "temperature.h"
+#include "bms.h"
+#include "tyre.h"
+#include "motor.h"
 
-void app_render(TelemetryData, VoltageData, TemperatureData);
-void car_preview(VoltageData, TemperatureData);
+void app_render(TelemetryData, BMSData, TyreData, MotorData);
+void car_preview(BMSData, TyreData, MotorData);
 void track_session(TelemetryData);
-void electronic(VoltageData);
-void tyre(TemperatureData);
-void motor(TemperatureData);
+void electronic(BMSData);
+void tyre(TyreData);
+void motor(MotorData);
 void errors();
 void profile();

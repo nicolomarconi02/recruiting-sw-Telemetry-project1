@@ -1,12 +1,8 @@
-#include <iostream>
-#include <vector>
-#include <time.h>
-#include <cstdlib>
 #include "telemetry.h"
 
 using namespace std;
 
-void TelemetryData::generateData(){
+void TelemetryData::initializeData(){
 
     int numDataPoints = 16;  // Numero di punti dati (curve del tracciato)
     int timeInterval = 5;    // Intervallo di tempo tra i punti dati (secondi)
@@ -17,8 +13,8 @@ void TelemetryData::generateData(){
         vector<TelemetryData> telemetryData;
         for (int j = 0; j < numDataPoints; j++) {
             float time = j * timeInterval;
-            float speed = 140 + (rand() % (200 - 140 + 1));  // Velocità casuale tra 140 e 200 km/h
-            int rpm = 2000 + rand() % (7000 - 2000 + 1);      // RPM casuale tra 2000 e 7000
+            float speed = generateRandomData(40, 200);  // Velocità casuale tra 40 e 200 km/h
+            int rpm = generateRandomData(2000, 7000);      // RPM casuale tra 2000 e 7000
             TelemetryData data(time, speed, rpm);
             telemetryData.push_back(data);
         }

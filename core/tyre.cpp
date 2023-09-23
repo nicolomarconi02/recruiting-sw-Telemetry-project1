@@ -1,7 +1,11 @@
-#include "app.h"
+#include "tyre.h"
 
-void tyre(TemperatureData temperatureData){
-    if(ImGui::Begin("Tyres", NULL, ImGuiWindowFlags_AlwaysAutoResize)){
-        ImGui::End();
+void TyreData::initializeData(){
+    srand(time(NULL));
+    for(int i = 0; i < numTyres; i++){
+        float gen = generateRandomData(40, 150);
+        tyresTemperature.push_back(gen);
+        tyresState.push_back(generateRandomData(0,1));
     }
+    tyreAge = generateRandomData(0, 40);
 }

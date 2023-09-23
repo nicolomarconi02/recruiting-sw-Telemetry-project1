@@ -2,13 +2,13 @@
 
 using namespace ImGui;
 
-void app_render(TelemetryData telemetryData, VoltageData voltageData, TemperatureData temperatureData){
+void app_render(TelemetryData telemetryData, BMSData bmsData, TyreData tyreData, MotorData motorData){
     
-    car_preview(voltageData, temperatureData);
+    car_preview(bmsData, tyreData, motorData);
     track_session(telemetryData);
-    electronic(voltageData);
-    tyre(temperatureData);
-    motor(temperatureData);
+    electronic(bmsData);
+    tyre(tyreData);
+    motor(motorData);
     errors();
     profile();
     // car_state();

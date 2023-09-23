@@ -2,15 +2,16 @@
 #include <vector>
 #include <ctime>
 #include <cstdlib>
+#include "data.h"
 
 using namespace std;
 
-class TelemetryData {
+class TelemetryData : public Data{
 public:
     vector<vector<TelemetryData>> telemetryDataPerLap;
     
     TelemetryData(){
-        generateData();
+        initializeData();
     }
 
     TelemetryData(float t, float s, int r){
@@ -22,7 +23,7 @@ public:
     float getlapTime();
     float getSpeed();
     int getRPM();
-    void generateData();
+    void initializeData();
 
 private:
     float lapTime;

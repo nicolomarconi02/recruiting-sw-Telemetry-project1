@@ -54,11 +54,14 @@ int main(){
     //genero dati per telemetria
     TelemetryData telemetryData;
 
-    //genero dati per voltaggio
-    VoltageData voltageData;
+    //genero dati per BMS
+    BMSData bmsData;
 
-    //genero dati per temperature
-    TemperatureData temperatureData;
+    //genero dati per gomme
+    TyreData tyreData;
+
+    //genero dati per motore
+    MotorData motorData;
 
     while (!glfwWindowShouldClose(window))
     {
@@ -79,7 +82,7 @@ int main(){
         //     ImGui::End();
         // }
 
-        app_render(telemetryData, voltageData, temperatureData);
+        app_render(telemetryData, bmsData, tyreData, motorData);
 
         render(window, clear_color);
     }
