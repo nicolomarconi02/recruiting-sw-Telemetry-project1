@@ -19,7 +19,8 @@ void BMSData::initializeData(){
         bmsLVTemperature.push_back(gen);
         bmsLVTotalTemperature += gen;
     }
-
+    bmsHVAge = generateRandomData(0, 500);
+    bmsLVAge = generateRandomData(0, 500);
     bmsLVCurrent = generateRandomData(0, 30);
     bmsHVTotalTemperature = (float) bmsHVTotalTemperature / numCellHV;
     bmsLVTotalTemperature = (float) bmsLVTotalTemperature / numCellLV;

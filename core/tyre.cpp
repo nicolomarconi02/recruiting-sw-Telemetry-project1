@@ -1,5 +1,7 @@
 #include "tyre.h"
 
+using namespace std;
+
 void TyreData::initializeData(){
     srand(time(NULL));
     for(int i = 0; i < numTyres; i++){

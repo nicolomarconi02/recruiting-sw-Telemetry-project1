@@ -29,8 +29,13 @@ ImU32 setBgColor(float data){
 
 void electronic(BMSData bmsData){
     if(ImGui::Begin("Electronic", NULL, ImGuiWindowFlags_AlwaysAutoResize)){
-        if(ImGui::CollapsingHeader("BMSHVVOLTAGE (V)")){
-            ImGui::Text("BMSHVVOLTAGE %.2f", bmsData.bmsHVTotalVoltage);
+        if(ImGui::CollapsingHeader("BMSHV")){
+            ImGui::Text("AGE %.2f Km", bmsData.bmsHVAge);
+            ImGui::ProgressBar(bmsData.bmsHVTotalVoltage/(4 * bmsData.numCellHV), ImVec2(0.0f,0.0f));
+            ImGui::SameLine();
+            ImGui::Text("BATTERY LEVEL");
+            ImGui::Text("BMSHVVOLTAGE %.2f V", bmsData.bmsHVTotalVoltage);
+            ImGui::Text("BMSHVVOLTAGE CELLS: (V)");
             if(ImGui::BeginTable("BMSHVVOLTAGE", 12, ImGuiTableFlags_SizingFixedSame)){
                 ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed, 40.0f);  
                 for(int i = 0; i < bmsData.numCellHV; i++){
@@ -41,9 +46,12 @@ void electronic(BMSData bmsData){
                 ImGui::EndTable();
             }
         }
-        if(ImGui::CollapsingHeader("BMSLVVOLTAGE (V)")){
-            ImGui::Text("BMSHVVOLTAGE %.2f", bmsData.bmsLVTotalVoltage);
-            if(ImGui::BeginTable("BMSHVVOLTAGE", 4, ImGuiTableFlags_SizingFixedSame)){
+        if(ImGui::CollapsingHeader("BMSLV")){
+            ImGui::Text("AGE %.2f Km", bmsData.bmsLVAge);
+            ImGui::Text("BMSLVCURRENT %.2f A", bmsData.bmsLVCurrent);
+            ImGui::Text("BMSLVVOLTAGE %.2f V", bmsData.bmsLVTotalVoltage);
+            ImGui::Text("BMSLVVOLTAGE CELLS: (V)");
+            if(ImGui::BeginTable("BMSLVVOLTAGE", 4, ImGuiTableFlags_SizingFixedSame)){
                 ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed, 40.0f);  
                 for(int i = 0; i < bmsData.numCellLV; i++){
                     ImGui::TableNextColumn();                

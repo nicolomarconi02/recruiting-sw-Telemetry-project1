@@ -1,95 +1,96 @@
 #include "app.h"
 #include "image.h"
 
-// Image imageTopView("../data/car_topview.png");
-// bool isTopViewOpen = false;
+using namespace std;
 
-void displayGraphic(TyreData);
+void displayGraphic(TyreData, int, ImVec2);
+void printInfo(TyreData, int, ImVec2);
+int setIndex(int);
 
 void tyre(TyreData tyreData){
     if(ImGui::Begin("Tyres", NULL, ImGuiWindowFlags_AlwaysAutoResize)){
-        displayGraphic(tyreData);
+        if(ImGui::BeginTable("BMSHVVOLTAGE", 4)){
+            ImVec2 progressBarSize(20.0f,100.0f);
+            for(int i = 0; i < 8; i++){
+                ImGui::TableNextColumn();                
+                if(i == 0 || i == 3 || i == 4 || i == 7){
+                    printInfo(tyreData, setIndex(i), progressBarSize);
+                }
+                else{
+                    displayGraphic(tyreData, setIndex(i), progressBarSize);
+                }
+            }
+            ImGui::EndTable();
+        }
         ImGui::End();
     }
 }
 
-void displayGraphic(TyreData tyreData){
-    ImVec2 progressBarSize(20.0f,100.0f);
-    ImGui::Text("FRONT LEFT");
-        ImGui::SameLine();
-        // Render the progress bar
-        ImGui::GetWindowDrawList()->AddRectFilled(
-            ImGui::GetCursorScreenPos(),
-            ImVec2(ImGui::GetCursorScreenPos().x + progressBarSize.x, ImGui::GetCursorScreenPos().y + progressBarSize.y),
-            IM_COL32(255, 255, 255, 255), // Color of the progress bar (white in this case)
-            0.0f,                     // No rounding
-            0                            // No flags
-        );
-        ImGui::GetWindowDrawList()->AddRectFilled(
-            ImVec2(ImGui::GetCursorScreenPos().x + 2, ImGui::GetCursorScreenPos().y + 2),
-            ImVec2(ImGui::GetCursorScreenPos().x + progressBarSize.x - 2, ImGui::GetCursorScreenPos().y + progressBarSize.y * (1.0f - tyreData.tyresState[0]) - 2),
-            IM_COL32(255, 0, 0, 255), // Color of the progress bar (red in this case)
-            0.0f,                     // No rounding
-            0                            // No flags
-        );
-        ImGui::SetCursorPosX(ImGui::GetCursorPosX() + progressBarSize.x + 10);
-        // Render the progress bar
-        ImGui::GetWindowDrawList()->AddRectFilled(
-            ImGui::GetCursorScreenPos(),
-            ImVec2(ImGui::GetCursorScreenPos().x + progressBarSize.x, ImGui::GetCursorScreenPos().y + progressBarSize.y),
-            IM_COL32(255, 255, 255, 255), // Color of the progress bar (white in this case)
-            0.0f,                     // No rounding
-            0                            // No flags
-        );
-        ImGui::GetWindowDrawList()->AddRectFilled(
-            ImVec2(ImGui::GetCursorScreenPos().x + 2, ImGui::GetCursorScreenPos().y + 2),
-            ImVec2(ImGui::GetCursorScreenPos().x + progressBarSize.x - 2, ImGui::GetCursorScreenPos().y + progressBarSize.y * (1.0f - tyreData.tyresState[1]) - 2),
-            IM_COL32(255, 0, 0, 255), // Color of the progress bar (red in this case)
-            0.0f,                     // No rounding
-            0                            // No flags
-        );
+void displayGraphic(TyreData tyreData, int index, ImVec2 progressBarSize){
+    ImGui::GetWindowDrawList()->AddRectFilled(
+        ImGui::GetCursorScreenPos(),
+        ImVec2(ImGui::GetCursorScreenPos().x + progressBarSize.x, ImGui::GetCursorScreenPos().y + progressBarSize.y),
+        IM_COL32(255, 255, 255, 255), // Color of the progress bar (white in this case)
+        0.0f,                     // No rounding
+        0                            // No flags
+    );
+    ImGui::GetWindowDrawList()->AddRectFilled(
+        ImVec2(ImGui::GetCursorScreenPos().x + 2, ImGui::GetCursorScreenPos().y + 2),
+        ImVec2(ImGui::GetCursorScreenPos().x + progressBarSize.x - 2, ImGui::GetCursorScreenPos().y + progressBarSize.y * (1.0f - tyreData.tyresState[index]) - 2),
+        IM_COL32(255, 0, 0, 255), // Color of the progress bar (red in this case)
+        0.0f,                     // No rounding
+        0                            // No flags
+    );
+}
 
-        ImGui::SetCursorPosX(ImGui::GetCursorPosX() + progressBarSize.x + 10);
-        ImGui::Text("FRONT RIGHT");
-        // Move the cursor to the next line
+void printInfo(TyreData tyreData, int index, ImVec2 progressBarSize){
+    switch (index){
+        case 0:
+            ImGui::Text("FRONT LEFT");
+            break;
+        case 1:
+            ImGui::Text("FRONT RIGHT");
+            break;
+        case 2:
+            ImGui::Text("REAR LEFT");
+            break;
+        case 3:
+            ImGui::Text("REAR RIGHT");
+            break;
+        default:
+            ImGui::Text("ERROR IN SWITCH");
+            break;
+    }
+    ImGui::Text("Age: %.2f Km", tyreData.tyreAge);
+    ImGui::Text("State: %.2f%%", tyreData.tyresState[index] * 100.0f);
+    ImGui::Text("Temperature: %.2f °C", tyreData.tyresTemperature[index]);
+    if(index == 1)
         ImGui::SetCursorPosY(ImGui::GetCursorPosY() + progressBarSize.y);
 
-        ImGui::Text("REAR LEFT");
-        ImGui::SameLine();
-        // Render the progress bar
-        ImGui::GetWindowDrawList()->AddRectFilled(
-            ImGui::GetCursorScreenPos(),
-            ImVec2(ImGui::GetCursorScreenPos().x + progressBarSize.x, ImGui::GetCursorScreenPos().y + progressBarSize.y),
-            IM_COL32(255, 255, 255, 255), // Color of the progress bar (white in this case)
-            0.0f,                     // No rounding
-            0                            // No flags
-        );
-        ImGui::GetWindowDrawList()->AddRectFilled(
-            ImVec2(ImGui::GetCursorScreenPos().x + 2, ImGui::GetCursorScreenPos().y + 2),
-            ImVec2(ImGui::GetCursorScreenPos().x + progressBarSize.x - 2, ImGui::GetCursorScreenPos().y + progressBarSize.y * (1.0f - tyreData.tyresState[2]) - 2),
-            IM_COL32(255, 0, 0, 255), // Color of the progress bar (red in this case)
-            0.0f,                     // No rounding
-            0                            // No flags
-        );
-        ImGui::SetCursorPosX(ImGui::GetCursorPosX() + progressBarSize.x + 10);
-        // Render the progress bar
-        ImGui::GetWindowDrawList()->AddRectFilled(
-            ImGui::GetCursorScreenPos(),
-            ImVec2(ImGui::GetCursorScreenPos().x + progressBarSize.x, ImGui::GetCursorScreenPos().y + progressBarSize.y),
-            IM_COL32(255, 255, 255, 255), // Color of the progress bar (white in this case)
-            0.0f,                     // No rounding
-            0                            // No flags
-        );
-        ImGui::GetWindowDrawList()->AddRectFilled(
-            ImVec2(ImGui::GetCursorScreenPos().x + 2, ImGui::GetCursorScreenPos().y + 2),
-            ImVec2(ImGui::GetCursorScreenPos().x + progressBarSize.x - 2, ImGui::GetCursorScreenPos().y + progressBarSize.y * (1.0f - tyreData.tyresState[4]) - 2),
-            IM_COL32(255, 0, 0, 255), // Color of the progress bar (red in this case)
-            0.0f,                     // No rounding
-            0                            // No flags
-        );
+}
 
-        ImGui::SetCursorPosX(ImGui::GetCursorPosX() + progressBarSize.x + 10);
-        ImGui::Text("REAR RIGHT");
-        // Move the cursor to the next line
-        ImGui::SetCursorPosY(ImGui::GetCursorPosY() + progressBarSize.y);
+int setIndex(int i){
+    int index = 0;
+    switch (i){
+        case 0:
+        case 1:
+            index = 0;
+            break;
+        case 2:
+        case 3:
+            index = 1;
+            break;
+        case 4:
+        case 5:
+            index = 2;
+            break;
+        case 6:
+        case 7:
+            index = 3;
+            break;
+        default:
+            cout << "Index not available" << endl;
+            break;
+    }
+    return index;
 }

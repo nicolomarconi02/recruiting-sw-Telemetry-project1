@@ -12,6 +12,8 @@ class BMSData : public Data{
         vector<float> bmsLVVoltage;
         vector<float> bmsHVTemperature;
         vector<float> bmsLVTemperature;
+        float bmsHVAge;
+        float bmsLVAge;
         float bmsLVCurrent;
         float bmsHVTotalTemperature;
         float bmsLVTotalTemperature;

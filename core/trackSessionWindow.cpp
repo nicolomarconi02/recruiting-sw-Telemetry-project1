@@ -13,7 +13,6 @@ void track_session(TelemetryData telemetryData){
                 imageTrack.LoadTextureFromFile();
                 isTrackOpen = true;
             }
-            ImGui::Text("height: %d width: %d", imageTrack.image_height, imageTrack.image_width);
             ImGui::Image((void*)(intptr_t)imageTrack.image_texture, ImVec2(imageTrack.image_width, imageTrack.image_height));
         }
         if(ImGui::CollapsingHeader("LAPS")){
