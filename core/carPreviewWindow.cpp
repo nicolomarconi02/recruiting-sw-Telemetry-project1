@@ -22,7 +22,9 @@ void car_preview(BMSData bmsData, TyreData tyreData, MotorData motorData){
             ImGui::BeginTooltip();
             if((io.MousePos.x < (xMin + imDim * 1/3))){
                 ImGui::Text("MOTOR");
+                ImGui::Text("motorState: %.2f%%", motorData.motorState * 100);
                 ImGui::Text("motorTemperature: %.2f °C", motorData.motorTemperature);
+                ImGui::Text("inverterState: %.2f%%", motorData.inverterState * 100);
                 ImGui::Text("inverterTemperature: %.2f °C", motorData.inverterTemperature);
 
             }

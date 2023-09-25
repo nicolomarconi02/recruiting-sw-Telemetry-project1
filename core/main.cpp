@@ -63,6 +63,14 @@ int main(){
     //genero dati per motore
     MotorData motorData;
 
+    //genero dati per utente
+    DataBase dataBase;
+    // cout << "&database " << &dataBase << endl;
+    // cout << "maintainer from main " << dataBase.maintainerLogin[0].username << dataBase.maintainerLogin[0].password << endl;
+    //         fflush(stdout);
+    //         cout << "adminLoginmfrom main " << dataBase.adminLogin[0].username << dataBase.adminLogin[0].password << endl;
+    //         fflush(stdout);
+
     while (!glfwWindowShouldClose(window))
     {
         glfwPollEvents();
@@ -82,7 +90,7 @@ int main(){
         //     ImGui::End();
         // }
 
-        app_render(telemetryData, bmsData, tyreData, motorData);
+        app_render(telemetryData, bmsData, tyreData, motorData, &dataBase);
 
         render(window, clear_color);
     }

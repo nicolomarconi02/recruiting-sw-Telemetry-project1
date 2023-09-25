@@ -8,4 +8,6 @@ void MotorData::initializeData(){
     inverterAge = generateRandomData(0, 500);
     motorTemperature = generateRandomData(20, 80);
     inverterTemperature = generateRandomData(20, 70);
+    motorState = generateRandomData(0, 1);
+    inverterState = generateRandomData(0, 1);
 }

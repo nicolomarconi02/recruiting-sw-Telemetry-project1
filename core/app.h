@@ -8,12 +8,13 @@
 #include "bms.h"
 #include "tyre.h"
 #include "motor.h"
+#include "dataBase.h"
 
-void app_render(TelemetryData, BMSData, TyreData, MotorData);
+void app_render(TelemetryData, BMSData, TyreData, MotorData, DataBase*);
 void car_preview(BMSData, TyreData, MotorData);
 void track_session(TelemetryData);
 void electronic(BMSData);
 void tyre(TyreData);
 void motor(MotorData);
 void errors();
-void profile();
+void profile(DataBase*);

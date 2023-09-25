@@ -2,7 +2,7 @@
 
 using namespace ImGui;
 
-void app_render(TelemetryData telemetryData, BMSData bmsData, TyreData tyreData, MotorData motorData){
+void app_render(TelemetryData telemetryData, BMSData bmsData, TyreData tyreData, MotorData motorData, DataBase* dataBase){
     
     car_preview(bmsData, tyreData, motorData);
     track_session(telemetryData);
@@ -10,7 +10,7 @@ void app_render(TelemetryData telemetryData, BMSData bmsData, TyreData tyreData,
     tyre(tyreData);
     motor(motorData);
     errors();
-    profile();
+    profile(dataBase);
     // car_state();
     // profile();
 

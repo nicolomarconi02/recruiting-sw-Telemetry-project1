@@ -10,9 +10,7 @@ using namespace std;
 
 class Data{
     public:
-        Data(){
-            
-        }
+        Data(){}
         float generateRandomData(int, int);
 };
 

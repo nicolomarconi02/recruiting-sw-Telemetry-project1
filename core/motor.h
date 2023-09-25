@@ -10,6 +10,8 @@ class MotorData : public Data{
         float inverterAge;
         float motorTemperature;
         float inverterTemperature;
+        float motorState;
+        float inverterState;
 
         MotorData(){
             initializeData();
