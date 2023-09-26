@@ -2,28 +2,23 @@
 
 using namespace std;
 
-void DataBase::setUser(int permission, char* username, char* password){
+void DataBase::setUser(char* username, char* password, int permission){
+    if(user != nullptr){
+        user.reset(nullptr);
+    }
     switch (permission)
     {
         case 0:
-            if(user != NULL){
-                delete user;
-            }
-            user = new BasicUser(username, password, 0);
+            user = make_unique<BasicUser>(username, password, 0);
             break;
         case 1:
-            if(user != NULL){
-                delete user;
-            }
-            user = new MaintainerUser(username, password, 1);
+            user = make_unique<MaintainerUser>(username, password, 1);
             break;
         case 2:
-            if(user != NULL){
-                delete user;
-            }
-            user = new AdminUser(username, password, 2);
+            user = make_unique<AdminUser>(username, password, 2);
             break;
         default:
             break;
     }
+    cout << "print username: " << user->username << " password: " << user->password << endl;
 }

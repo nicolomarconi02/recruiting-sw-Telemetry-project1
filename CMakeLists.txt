@@ -29,6 +29,10 @@ add_library(
     ${CMAKE_CURRENT_SOURCE_DIR}/core/motor.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/core/telemetry.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/core/tyre.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/dataBase.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/basicUser.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/maintainerUser.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/adminUser.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/core/carPreviewWindow.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/core/electronicWindow.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/core/errorsWindow.cpp

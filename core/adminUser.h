@@ -10,6 +10,8 @@ using namespace std;
 class AdminUser : public MaintainerUser{
     public:
         AdminUser(const char* us, const char* pass, int perm) : MaintainerUser(us, pass, perm){}
+        void setupProfileWindow() override;  
 };
+
 
 #endif

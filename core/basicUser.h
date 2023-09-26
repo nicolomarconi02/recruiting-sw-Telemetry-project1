@@ -3,7 +3,12 @@
 
 #include <iostream>
 #include <vector>
+#include "imgui/imgui.h"
+#include "imgui/backends/imgui_impl_glfw.h"
+#include "imgui/backends/imgui_impl_opengl2.h"
+#include <GL/glew.h>
 #include <string.h>
+#include <memory>
 
 using namespace std;
 
@@ -22,11 +27,7 @@ class BasicUser{
 
         }
 
-        ~BasicUser(){
-            delete this;
-        }
-
-        bool checkLogin();
+        virtual void setupProfileWindow();
 };
 
 #endif 

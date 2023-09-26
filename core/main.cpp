@@ -51,18 +51,6 @@ int main(){
     style.FrameRounding = 12;
     style.ScrollbarRounding = 12;
 
-    //genero dati per telemetria
-    TelemetryData telemetryData;
-
-    //genero dati per BMS
-    BMSData bmsData;
-
-    //genero dati per gomme
-    TyreData tyreData;
-
-    //genero dati per motore
-    MotorData motorData;
-
     //genero dati per utente
     DataBase dataBase;
     // cout << "&database " << &dataBase << endl;
@@ -90,7 +78,7 @@ int main(){
         //     ImGui::End();
         // }
 
-        app_render(telemetryData, bmsData, tyreData, motorData, &dataBase);
+        app_render(&dataBase);
 
         render(window, clear_color);
     }

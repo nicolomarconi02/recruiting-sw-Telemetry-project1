@@ -6,4 +6,6 @@ void MaintainerUser::prova(){
     cout << "prova" << endl;
 }
 
-
+void MaintainerUser::setupProfileWindow(){
+    cout << "printText() maintainer" << endl;
+}

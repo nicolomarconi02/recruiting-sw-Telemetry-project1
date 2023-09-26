@@ -13,6 +13,7 @@ class MaintainerUser : public BasicUser{
         MaintainerUser(const char* us, const char* pass, int perm) : BasicUser(us, pass, perm){}
         void prova();
         bool checkLogin(vector<MaintainerUser>);
+        void setupProfileWindow() override;
 };
 
 #endif
