@@ -2,21 +2,27 @@
 
 using namespace std;
 
-void TelemetryData::initializeData(){
+void TelemetryData::initializeData() {
+    // Initialize telemetry data for a race track
 
-    int numDataPoints = 16;  // Numero di punti dati (curve del tracciato)
-    int timeInterval = 5;    // Intervallo di tempo tra i punti dati (secondi)
-    srand(time(NULL));
-    for(int i = 0; i < getnLap(); i++){
-        vector<TelemetryData> telemetryData;
+    int numDataPoints = 16;  // Number of data points (track curves)
+    int timeInterval = 5;    // Time interval between data points (seconds)
+    srand(time(NULL));       // Seed the random number generator
+
+    // Loop through each lap of the race
+    for (int i = 0; i < getnLap(); i++) {
+        vector<TelemetryData> telemetryData; // Create a vector to store telemetry data for one lap
+
+        // Generate telemetry data for each curve on the track
         for (int j = 0; j < numDataPoints; j++) {
-            float time = j * timeInterval;
-            float speed = generateRandomData(40, 200);  // Velocità casuale tra 40 e 200 km/h
-            int rpm = generateRandomData(2000, 7000);      // RPM casuale tra 2000 e 7000
-            TelemetryData data(time, speed, rpm);
-            telemetryData.push_back(data);
+            float time = j * timeInterval;                   // Time increases for each data point
+            float speed = generateRandomData(40, 200);       // Random speed between 40 and 200 km/h
+            int rpm = generateRandomData(2000, 7000);        // Random RPM between 2000 and 7000
+            TelemetryData data(time, speed, rpm);            // Create telemetry data object
+            telemetryData.push_back(data);                   // Add telemetry data to the lap's vector
         }
-        telemetryDataPerLap.push_back(telemetryData);
+
+        telemetryDataPerLap.push_back(telemetryData);        // Add the lap's telemetry data to the overall vector
     }
 }
 

@@ -65,7 +65,6 @@ int main(){
 
         // renders tabs/buttons/...
         DockSpaceOverViewport(GetMainViewport());
-        ShowDemoWindow();
 
         app_render(&dataBase);
 

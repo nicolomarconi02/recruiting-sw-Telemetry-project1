@@ -1,58 +1,61 @@
-# Project 1
+# Recruiting SW Telemetry Project1
 
-> ⚠️ This document is fairly technical to maintain brevity, if you have **any** questions ask your recruiter or come visit us at floor -2 of Povo 2.
+## Introduzione
+Il progetto consiste nella realizzazione di una applicazione utilizzando [ImGui](https://github.com/ocornut/imgui) per la gestione di dati di telemetria della vettura. Per maggiori informazioni è possibile consultare l'assignment del progetto nel file [projectInstruction](/projectInstruction.md).
 
-## Abstract
+Le istruzioni fornite richiedevano solamente di definire una funzionalità di login e l'applicazione in generale, lasciando libera la scelta delle altre funzionalità che potevano essere implementate. Nel file [TelemetryProjectPlan.pdf](./Deliverable/TelemetryProjectPlan.pdf) sono presenti delle informazioni aggiuntive sulle funzionalità presenti nell'applicazione rapportate anche ai permessi dell'utente.
 
-Create a desktop application using [ImGui](https://github.com/ocornut/imgui). You are free to choose the task of the application but you must at least implement the following:
+Tutti i valori dei dati visualizzati sono stati generati randomizzati una volta appena avviata l'applicazione.
 
-- User login.
-- Global state of the application.
+Sono stati gestiti tre tipologie di utenti:
+- Basic user
+- Maintainer
+- Admin
 
-The application mus be organized with multiple tabs, each in a different source file.  
-Keep the project clean, setup it for scalability, allowing for new features implementations.  
-Try using some thirdparty libraries to add functionalities to your application.
+Tramite la funzione login è possibile passare da un utente all'altro inserendo le credenziali all'interno degli appositi campi di testo. 
 
-### User login
+*Per accedere come un Maintainer è necessario inserire:*
+- username: *maintainer*
+- password: *maintainer*
 
-Use ImGui to allow a user to login. You could setup different login types (Admin, Maintainer, Basic user), or simply logged or not.  
-Based on the login state, change the attitude of your application, maybe locking some functionalities.
+*Per accedere come un Admin è necessario inserire:*
+- username: *admin*
+- password: *admin*
 
-### Global State
+Sono stati creati inoltre degli ulteriori utenti (Maintainer, Admin) accessibili tramite le credenziali:
 
-Define with some programming thechnique a way to access to the same data across multiple files/classes. For example if the login happened then the whole application should know the new login state.
+**Maintainer**
+- username: *topolino*
+- password: *paperino*
+---
+**Admin**
+- username: *pluto*
+- password: *paperino*
 
-## Getting started
+In base a se un utente è un Basic user, un Maintainer o un Admin avrà uno stile di visualizzazione dell'applicazione diverso e delle funzionalità diverse (vedi [TelemetryProjectPlan.pdf](./Deliverable/TelemetryProjectPlan.pdf))
 
-### Prerequisites
+Per l'inserimento delle immagini nell'applicazione è stata utilizzata la libreria [stb_image.h](https://github.com/nothings/stb). 
 
-- `git` and a [GitHub](https://github.com) account
-- C/C++ toolchain, with CMake
-- OpenGL
-- GLEW
-- GLFW3
+***ATTENZIONE**: per caricare le immagini all'interno dell'applicazione è necessario che queste siano presenti nella cartella [data](./data/).*
+## Istruzioni per l'uso
 
-For Debian / Ubuntu you can use:
+- scaricare ed estrarre i [file del progetto](
+https://github.com/nicolomarconi02/recruiting-sw-Telemetry-project1/archive/refs/heads/main.zip)
+- per eseguire l'applicazione è possibile utilizzare il file [run.sh](run.sh) 
+    - se [run.sh](run.sh) non è eseguibile è necessario utilizzare:
+```bash
+chmode +x run.sh
+./run.sh
+```
+- è possibile inoltre utilizzare il file [build.sh](/build.sh) per compilare il programma senza eseguirlo automaticamente 
+    - se [build.sh](/build.sh) non è eseguibile è necessario utilizzare:
 
 ```bash
-sudo apt install build-essential cmake libglfw3-dev libglew-dev mesa-utils
+chmode +x build.sh
+./build.sh
 ```
-
-### Setup
-
-- Download the project files [here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Feagletrt%2Frecruiting-sw%2Ftree%2Fmaster%2Ftelemetry%2Fproject_1)
-- Create a new GitHub repository and upload the project files via git
-- Start working on the task, creating git commits as you make progress
-- When it's time to deliver, please send your recruiter a link to your github repository
-
-## Building
-
-The build system that we use is cmake.
-
+- In questo caso per eseguire l'applicazione è necessario eseguire questi ulteriori comandi:
 ```bash
-mkdir -p build
-cmake ..
-make -j$(nproc)
+cd bin
+./project_1
 ```
-
-This will build the executable that will be located in `./bin` directory.

@@ -1,13 +1,19 @@
 #include "basicUser.h"
 
 using namespace std;
-
-void BasicUser::setupProfileWindow(){
+// Define the setupProfileWindow function of the BasicUser class.
+void BasicUser::setupProfileWindow() {
+    // Remove any previously set ImGui style settings to avoid conflicts.
     removeStyle();
+
+    // Set up a custom ImGui style for this user profile window.
     setupStyle();
 }
 
-void BasicUser::setupStyle(){
+// Define the setupStyle function of the BasicUser class.
+void BasicUser::setupStyle() {
+    // Push custom ImGui style colors onto the ImGui style stack.
+    // These colors are used to customize the appearance of ImGui widgets.
     ImGui::PushStyleColor(ImGuiCol_Tab, YELLOW_MID_DARK);
     ImGui::PushStyleColor(ImGuiCol_TabActive, ORANGE_LIGHT);
     ImGui::PushStyleColor(ImGuiCol_TabHovered, YELLOW_MID);
@@ -30,6 +36,9 @@ void BasicUser::setupStyle(){
     ImGui::PushStyleColor(ImGuiCol_CheckMark, YELLOW_MID);
 }
 
-void BasicUser::removeStyle(){
+// Define the removeStyle function of the BasicUser class.
+void BasicUser::removeStyle() {
+    // Pop the custom ImGui style colors from the ImGui style stack.
+    // This function removes the previously set style to reset ImGui to its default style.
     ImGui::PopStyleColor(20);
 }

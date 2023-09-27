@@ -11,11 +11,9 @@ string TrackData::getImagePath(){
 }
 
 void TrackData::setTrackName(string track){
-    // strcpy(trackName, track);
     trackName = track;
 }
         
 void TrackData::setImagePath(string path){
-    // strcpy(imagePath, path);
     imagePath = path;
 }

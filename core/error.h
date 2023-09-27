@@ -8,9 +8,10 @@ using namespace std;
 
 class Error{
     public:
-        vector<string> electronicErrorList;
-        vector<string> tyreErrorList;
-        vector<string> motorErrorList;
+        // Public member variables to store error lists for different components
+        vector<string> electronicErrorList; // Stores electronic-related errors
+        vector<string> tyreErrorList;       // Stores tyre-related errors
+        vector<string> motorErrorList;      // Stores motor-related errors
 };
 
 #endif

@@ -10,6 +10,7 @@
 #include <string>
 #include <memory>
 
+// Define constants for color conversion and pre-defined color values using ImVec4.
 #define CONVERTER 255.0f
 #define YELLOW_LIGHT ImVec4(212/CONVERTER, 230/CONVERTER, 30/CONVERTER, 1.0f)
 #define YELLOW_MID_LIGHT ImVec4(188/CONVERTER, 206/CONVERTER, 8/CONVERTER, 1.0f)
@@ -22,23 +23,27 @@
 
 using namespace std;
 
-class BasicUser{
-    public:
-        int permission;
-        string username;
-        string password;
+// Declare the BasicUser class.
+class BasicUser {
+public:
+    // Declare member variables for user information.
+    int permission;
+    string username;
+    string password;
 
-        BasicUser(string us, string pass, int perm){
-            permission = perm;
-            username = us;
-            password = pass;
-        }
+    // Constructor for initializing user data.
+    BasicUser(string us, string pass, int perm) {
+        permission = perm;
+        username = us;
+        password = pass;
+    }
 
-        virtual void setupProfileWindow();
-        virtual void setupStyle();
-        void removeStyle();
-    private:
-        
+    // Declare virtual functions for setting up the user's profile window and style.
+    virtual void setupProfileWindow();
+    virtual void setupStyle();
+
+    // Declare a function for removing custom ImGui styles.
+    void removeStyle();
 };
 
 #endif 

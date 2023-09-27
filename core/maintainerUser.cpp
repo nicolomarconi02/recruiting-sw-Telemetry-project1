@@ -2,12 +2,13 @@
 
 using namespace std;
 
-void MaintainerUser::setupProfileWindow(){
-    removeStyle();
-    setupStyle();
+void MaintainerUser::setupProfileWindow() {
+    removeStyle(); // Clear any existing ImGui style settings
+    setupStyle();  // Apply custom style settings for the MaintainerUser profile window
 }
 
-void MaintainerUser::setupStyle(){
+void MaintainerUser::setupStyle() {
+    // Customize the ImGui style for the MaintainerUser profile window
     ImGui::PushStyleColor(ImGuiCol_Tab, GRAY_MID_DARK);
     ImGui::PushStyleColor(ImGuiCol_TabActive, GRAY_DARK_DEEP);
     ImGui::PushStyleColor(ImGuiCol_TabHovered, GRAY_MID);
