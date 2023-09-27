@@ -2,7 +2,7 @@
 
 using namespace std;
 
-char* TrackData::getTrackName(){
+const char* TrackData::getTrackName(){
     return trackName;
 }
 

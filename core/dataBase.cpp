@@ -59,3 +59,11 @@ void DataBase::addTrack(char* name, char* path, int n){
     TelemetryData telemetry(name, path, n);
     telemetryData.push_back(telemetry);
 }
+
+void DataBase::removeTrack(vector<bool> tracklist){
+    for(int i = 0; i < tracklist.size(); i++){
+        if(tracklist[i]){
+            telemetryData.erase(telemetryData.begin() + i);
+        }
+    }   
+}

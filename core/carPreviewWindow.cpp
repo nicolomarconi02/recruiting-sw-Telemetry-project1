@@ -30,11 +30,11 @@ void car_preview(DataBase* dataBase){
             }
             else if((io.MousePos.x >= (xMin + imDim * 1/3)) && (io.MousePos.x < (xMin + imDim * 2/3))){
                 ImGui::Text("ELECTRONIC");
-                ImGui::Text("BMSHVVoltage: %.2f V", dataBase->bmsData.bmsHVTotalVoltage);
-                ImGui::Text("BMSHVTemperature: %.2f °C", dataBase->bmsData.bmsHVTotalTemperature);
-                ImGui::Text("BMSLVCurrent: %.2f A", dataBase->bmsData.bmsLVCurrent);
-                ImGui::Text("BMSLVVoltage: %.2f V", dataBase->bmsData.bmsLVTotalVoltage);
-                ImGui::Text("BMSLVTemperature: %.2f °C", dataBase->bmsData.bmsLVTotalTemperature);
+                ImGui::Text("BMSHVVoltage: %.2f V", dataBase->bmsData.getBMSHVTotalVoltage());
+                ImGui::Text("BMSHVTemperature: %.2f °C", dataBase->bmsData.getBMSHVTotalTemperature());
+                ImGui::Text("BMSLVCurrent: %.2f A", dataBase->bmsData.getBMSLVCURRENT());
+                ImGui::Text("BMSLVVoltage: %.2f V", dataBase->bmsData.getBMSLVTotalVoltage());
+                ImGui::Text("BMSLVTemperature: %.2f °C", dataBase->bmsData.getBMSLVTotalTemperature());
             }
             else{
                 ImGui::Text("TYRE");

@@ -46,7 +46,6 @@ public:
     void setSpeed(float);
     void setRPM(float);
     void setnLap(int);
-    char* getName();
     void initializeData();
     void setupTrack(char*, char*);
 

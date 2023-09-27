@@ -13,5 +13,5 @@ void track_session(DataBase*);
 void electronic(DataBase*);
 void tyre(DataBase*);
 void motor(DataBase*);
-void errors();
+void errors(DataBase*);
 void profile(DataBase*);

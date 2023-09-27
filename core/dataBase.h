@@ -44,4 +44,5 @@ class DataBase{
         void addAdmin(char*, char*);
         void removeUser(vector<bool>, vector<bool>);
         void addTrack(char*, char*, int);
+        void removeTrack(vector<bool>);
 };

@@ -23,7 +23,7 @@ class TrackData{
             image = new Image(path);
         }
 
-        char* getTrackName();
+        const char* getTrackName();
         char* getImagePath();
         void setTrackName(const char*);
         void setImagePath(const char*);

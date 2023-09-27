@@ -30,15 +30,16 @@ ImU32 setBgColor(float data){
 void electronic(DataBase* dataBase){
     if(ImGui::Begin("Electronic", NULL, ImGuiWindowFlags_AlwaysAutoResize)){
         if(ImGui::CollapsingHeader("BMSHV")){
-            ImGui::Text("AGE %.2f Km", dataBase->bmsData.bmsHVAge);
-            ImGui::ProgressBar(dataBase->bmsData.bmsHVTotalVoltage/(4 * dataBase->bmsData.numCellHV), ImVec2(0.0f,0.0f));
+            ImGui::Text("AGE %.2f Km", dataBase->bmsData.getBMSHVAGE());
+            ImGui::ProgressBar(dataBase->bmsData.getBMSHVTotalVoltage()/(4 * dataBase->bmsData.getNumCellHV()), ImVec2(0.0f,0.0f));
             ImGui::SameLine();
             ImGui::Text("BATTERY LEVEL");
-            ImGui::Text("BMSHVVOLTAGE %.2f V", dataBase->bmsData.bmsHVTotalVoltage);
+            ImGui::Text("BMSHVTEMPERATURE %.2f °C", dataBase->bmsData.getBMSHVTotalTemperature());
+            ImGui::Text("BMSHVVOLTAGE %.2f V", dataBase->bmsData.getBMSHVTotalVoltage());
             ImGui::Text("BMSHVVOLTAGE CELLS: (V)");
             if(ImGui::BeginTable("BMSHVVOLTAGE", 12, ImGuiTableFlags_SizingFixedSame)){
                 ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed, 40.0f);  
-                for(int i = 0; i < dataBase->bmsData.numCellHV; i++){
+                for(int i = 0; i < dataBase->bmsData.getNumCellHV(); i++){
                     ImGui::TableNextColumn();                
                     ImGui::Text("%.2f", dataBase->bmsData.bmsHVVoltage[i]);
                     ImGui::TableSetBgColor(ImGuiTableBgTarget_CellBg, setBgColor(dataBase->bmsData.bmsHVVoltage[i]));
@@ -47,13 +48,14 @@ void electronic(DataBase* dataBase){
             }
         }
         if(ImGui::CollapsingHeader("BMSLV")){
-            ImGui::Text("AGE %.2f Km", dataBase->bmsData.bmsLVAge);
-            ImGui::Text("BMSLVCURRENT %.2f A", dataBase->bmsData.bmsLVCurrent);
-            ImGui::Text("BMSLVVOLTAGE %.2f V", dataBase->bmsData.bmsLVTotalVoltage);
+            ImGui::Text("AGE %.2f Km", dataBase->bmsData.getBMSLVAGE());
+            ImGui::Text("BMSLVTEMPERATURE %.2f °C", dataBase->bmsData.getBMSLVTotalTemperature());
+            ImGui::Text("BMSLVCURRENT %.2f A", dataBase->bmsData.getBMSLVCURRENT());
+            ImGui::Text("BMSLVVOLTAGE %.2f V", dataBase->bmsData.getBMSLVTotalVoltage());
             ImGui::Text("BMSLVVOLTAGE CELLS: (V)");
             if(ImGui::BeginTable("BMSLVVOLTAGE", 4, ImGuiTableFlags_SizingFixedSame)){
                 ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed, 40.0f);  
-                for(int i = 0; i < dataBase->bmsData.numCellLV; i++){
+                for(int i = 0; i < dataBase->bmsData.getNumCellLV(); i++){
                     ImGui::TableNextColumn();                
                     ImGui::Text("%.2f", dataBase->bmsData.bmsLVVoltage[i]);
                     ImGui::TableSetBgColor(ImGuiTableBgTarget_CellBg, setBgColor(dataBase->bmsData.bmsLVVoltage[i]));

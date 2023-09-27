@@ -8,7 +8,6 @@ static char password[64] = "";
 static char newusername[64] = "";
 static char newpassword[64] = "";
 bool passwordMode = false;
-bool firstTime = true;
 bool userFound = false;
 bool mostraTesto = false;
 static int e = 1;
@@ -101,7 +100,6 @@ void profile(DataBase* dataBase){
                 dataBase->setUser("", "", 0);
                 strcpy(username, "");
                 strcpy(password, "");
-                firstTime = true;
                 mostraTesto = false;
                 userFound = false;
             }
@@ -111,7 +109,6 @@ void profile(DataBase* dataBase){
                         sizeAdmin = dataBase->adminLogin.size();
                         sizeMaintainer = dataBase->maintainerLogin.size();
                         initializeSelection(dataBase->maintainerLogin.size(), dataBase->adminLogin.size());
-                        firstTime = false;
                     }
                     HelpMarker("Hold CTRL and click to select multiple items.");
                     if(ImGui::TreeNode("Maintainer")){
