@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void DataBase::setUser(char* username, char* password, int permission){
+void DataBase::setUser(string username, string password, int permission){
     if(user != nullptr){
         user.reset(nullptr);
     }
@@ -23,13 +23,13 @@ void DataBase::setUser(char* username, char* password, int permission){
     cout << "print username: " << user->username << " password: " << user->password << endl;
 }
 
-void DataBase::addMaintainer(char* usr, char* psw){
+void DataBase::addMaintainer(string usr, string psw){
     unique_ptr<MaintainerUser> usr1 = make_unique<MaintainerUser>(usr, psw, 1);
     maintainerLogin.push_back(move(usr1));
 }   
         
         
-void DataBase::addAdmin(char* usr, char* psw){
+void DataBase::addAdmin(string usr, string psw){
     unique_ptr<AdminUser> usr1 = make_unique<AdminUser>(usr, psw, 1);
     adminLogin.push_back(move(usr1));
 }
@@ -55,7 +55,7 @@ void DataBase::removeUser(vector<bool> listM, vector<bool> listA){
     adminLogin = move(newAdminList);
 }
 
-void DataBase::addTrack(char* name, char* path, int n){
+void DataBase::addTrack(string name, string path, int n){
     TelemetryData telemetry(name, path, n);
     telemetryData.push_back(telemetry);
 }

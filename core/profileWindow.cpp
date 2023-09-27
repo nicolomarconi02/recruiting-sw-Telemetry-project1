@@ -9,7 +9,8 @@ static char newusername[64] = "";
 static char newpassword[64] = "";
 bool passwordMode = false;
 bool userFound = false;
-bool mostraTesto = false;
+bool mostraTestoLogin = false;
+bool mostraTestoAdd = false;
 static int e = 1;
 int sizeMaintainer = 0;
 int sizeAdmin = 0;
@@ -20,6 +21,7 @@ vector<bool> adminSelection;
 
 void initializeSelection(int, int);
 void clearSelection(int, int);
+bool checkUser(DataBase*,string);
 
 void HelpMarker(const char* desc)
 {
@@ -46,7 +48,7 @@ void profile(DataBase* dataBase){
             if(ImGui::Button("check")){
                 for(int i = 0; i < dataBase->maintainerLogin.size() && !userFound; i++){
                     MaintainerUser* maintainerPtr = dataBase->maintainerLogin[i].get();
-                    if(strcmp(username, maintainerPtr->username) == 0 && strcmp(password, maintainerPtr->password) == 0){
+                    if(strcmp(username, maintainerPtr->username.c_str()) == 0 && strcmp(password, maintainerPtr->password.c_str()) == 0){
                         cout << "maintainer riconosciuto" << endl;
                         dataBase->setUser(username, password, 1);
                         dataBase->user->setupProfileWindow();
@@ -59,7 +61,7 @@ void profile(DataBase* dataBase){
                 } 
                 for(int i = 0; i < dataBase->adminLogin.size() && !userFound; i++){
                     AdminUser* adminPtr = dataBase->adminLogin[i].get();
-                    if(strcmp(username, adminPtr->username) == 0 && strcmp(password, adminPtr->password) == 0){
+                    if(strcmp(username, adminPtr->username.c_str()) == 0 && strcmp(password, adminPtr->password.c_str()) == 0){
                         cout << "admin riconosciuto" << endl;
                         dataBase->setUser(username, password, 2);
                         dataBase->user->setupProfileWindow();
@@ -70,27 +72,27 @@ void profile(DataBase* dataBase){
                     }
                 } 
                 if(!userFound){
-                    mostraTesto = true;
+                    mostraTestoLogin = true;
                 }
             }
             ImGui::SameLine();
             if(ImGui::Button("clear")){
                 strcpy(username, "");
                 strcpy(password, "");
-                mostraTesto = false;
+                mostraTestoLogin = false;
                 userFound = false;
             }
-            if(mostraTesto){
+            if(mostraTestoLogin){
                 ImGui::Text("Non esiste nessun user con queste credenziali");
             }
         }
         else{
             switch (dataBase->user->permission){
             case 1:
-                ImGui::Text("%s\nYou are logged as a Maintainer", dataBase->user->username);
+                ImGui::Text("%s\nYou are logged as a Maintainer", dataBase->user->username.c_str());
                 break;
             case 2:
-                ImGui::Text("%s\nYou are logged as a Admin", dataBase->user->username);
+                ImGui::Text("%s\nYou are logged as a Admin", dataBase->user->username.c_str());
                 break;
             default:
                 break;
@@ -100,7 +102,7 @@ void profile(DataBase* dataBase){
                 dataBase->setUser("", "", 0);
                 strcpy(username, "");
                 strcpy(password, "");
-                mostraTesto = false;
+                mostraTestoLogin = false;
                 userFound = false;
             }
             if(dataBase->user->permission == 2){
@@ -115,7 +117,7 @@ void profile(DataBase* dataBase){
                         if(ImGui::BeginListBox("")){
                             for (int n = 0; n < dataBase->maintainerLogin.size(); n++){
                                 char buf[32];
-                                sprintf(buf, dataBase->maintainerLogin[n]->username);
+                                sprintf(buf, dataBase->maintainerLogin[n]->username.c_str());
                                 if (ImGui::Selectable(buf, maintainerSelection[n])){
                                     if (!ImGui::GetIO().KeyCtrl)    // Clear selection when CTRL is not held
                                         clearSelection(dataBase->maintainerLogin.size(), dataBase->adminLogin.size());
@@ -130,7 +132,7 @@ void profile(DataBase* dataBase){
                         if(ImGui::BeginListBox("")){
                             for (int n = 0; n < dataBase->adminLogin.size(); n++){
                                 char buf[32];
-                                sprintf(buf, dataBase->adminLogin[n]->username);
+                                sprintf(buf, dataBase->adminLogin[n]->username.c_str());
                                 if (ImGui::Selectable(buf, adminSelection[n])){
                                     if (!ImGui::GetIO().KeyCtrl)    // Clear selection when CTRL is not held
                                         clearSelection(dataBase->maintainerLogin.size(), dataBase->adminLogin.size());
@@ -155,13 +157,22 @@ void profile(DataBase* dataBase){
                     if(ImGui::IsItemClicked()){
                         e = 2;
                     }
+                    if(mostraTestoAdd){
+                        ImGui::Text("Esiste gia' un utente con quel nome");
+                    }
 
                     if(ImGui::Button("Add User")){
-                        if(e == 1){
-                            dataBase->addMaintainer(newusername, newpassword);
+                        if(!checkUser(dataBase, newusername)){
+                            if(e == 1){
+                                dataBase->addMaintainer(newusername, newpassword);
+                            }
+                            else{
+                                dataBase->addAdmin(newusername, newpassword);
+                            }
+                            mostraTestoAdd = false;
                         }
                         else{
-                            dataBase->addAdmin(newusername, newpassword);
+                            mostraTestoAdd = true;
                         }
                         
                     }
@@ -195,4 +206,19 @@ void clearSelection(int maintainerSize, int adminSize){
     for(int i = 0; i < adminSize; i++){
         adminSelection[i] = false;
     }
+}
+
+bool checkUser(DataBase* db,string name){
+    bool uguale = false;
+    for(int i = 0; i < db->maintainerLogin.size() && !uguale; i++){
+        if(db->maintainerLogin[i]->username == name){
+            uguale = true;
+        }
+    }
+    for(int i = 0; i < db->adminLogin.size() && !uguale; i++){
+        if(db->adminLogin[i]->username == name){
+            uguale = true;
+        }
+    }
+    return uguale;
 }

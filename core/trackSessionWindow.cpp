@@ -2,21 +2,22 @@
 #include "app.h"
 #include "image.h"
 
-bool isTrackOpen = false;
 static int currentLap = 1;
 static int currentTrack = 1;
 static char trackName[64] = "";
 static char imagePath[64] = "";
 int numLap = 0;
 int sizeTrackSelection = 0;
+bool mostra = false;
 vector<bool> trackSelection;
 void initializeSelection(int);
 void clearSelection(int);
+bool checkName(DataBase*, string);
 
 void track_session(DataBase* dataBase){
     if(ImGui::Begin("Track Session", NULL, ImGuiWindowFlags_AlwaysAutoResize)){
         ImGui::Text("Select Track");
-        ImGui::Text(dataBase->telemetryData[currentTrack - 1].trackData->getTrackName());
+        ImGui::Text(dataBase->telemetryData[currentTrack - 1].trackData->getTrackName().c_str());
         ImGui::SameLine();
         if(ImGui::Button("<")){
             if(currentTrack - 1 > 0){
@@ -39,7 +40,7 @@ void track_session(DataBase* dataBase){
                     if(ImGui::BeginListBox("")){
                         for (int n = 0; n < dataBase->telemetryData.size(); n++){
                             char buf[32];
-                            sprintf(buf, dataBase->telemetryData[n].trackData->getTrackName());
+                            sprintf(buf, dataBase->telemetryData[n].trackData->getTrackName().c_str());
                             if (ImGui::Selectable(buf, trackSelection[n])){
                                 if (!ImGui::GetIO().KeyCtrl)    // Clear selection when CTRL is not held
                                     clearSelection(dataBase->telemetryData.size());
@@ -49,13 +50,25 @@ void track_session(DataBase* dataBase){
                         ImGui::EndListBox();
                     }
                     ImGui::TreePop();
+                    if(mostra){
+                        ImGui::Text("Esiste gia' un tracciato con questo nome");
+                    }
                 }
                 if(ImGui::TreeNode("Add Track")){
                     ImGui::InputText("Track name", trackName, 64);
                     ImGui::InputText("Image path", imagePath, 64);
                     ImGui::InputInt("Num Lap", &numLap);
+                    if(numLap < 1){
+                        numLap = 1;
+                    }
                     if(ImGui::Button("Add Track")){
-                        dataBase->addTrack(trackName, imagePath, numLap);
+                        if(!checkName(dataBase,trackName)){
+                            dataBase->addTrack(trackName, imagePath, numLap);
+                            mostra = false;
+                        }
+                        else{
+                            mostra = true;
+                        }
                     }
                     ImGui::SameLine();
                     if(ImGui::Button("Remove Track")){
@@ -71,9 +84,9 @@ void track_session(DataBase* dataBase){
         int maxNumLap = dataBase->telemetryData[currentTrack - 1].telemetryDataPerLap.size();
         if(ImGui::CollapsingHeader("GPS")){
             ImGui::Text("GPS of the Track");
-            if(!isTrackOpen){
+            if(!dataBase->telemetryData[currentTrack - 1].trackData->isImageOpen){
                 dataBase->telemetryData[currentTrack - 1].trackData->image->LoadTextureFromFile();
-                isTrackOpen = true;
+                dataBase->telemetryData[currentTrack - 1].trackData->isImageOpen = true;
             }
             ImGui::Image((void*)(intptr_t)dataBase->telemetryData[currentTrack - 1].trackData->image->image_texture, ImVec2(dataBase->telemetryData[currentTrack - 1].trackData->image->image_width, dataBase->telemetryData[currentTrack - 1].trackData->image->image_height));
         }
@@ -115,4 +128,14 @@ void clearSelection(int trackSize){
     for(int i = 0; i < trackSize; i++){
         trackSelection[i] = false;
     }
+
+}
+bool checkName(DataBase* db,string name){
+    bool uguale = false;
+    for(int i = 0; i < db->telemetryData.size() && !uguale; i++){
+        if(db->telemetryData[i].trackData->getTrackName() == name){
+            uguale = true;
+        }
+    }
+    return uguale;
 }

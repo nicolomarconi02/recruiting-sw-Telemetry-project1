@@ -10,7 +10,8 @@ using namespace std;
 
 class MaintainerUser : public BasicUser{
     public:
-        MaintainerUser(const char* us, const char* pass, int perm) : BasicUser(us, pass, perm){}
+        MaintainerUser(string us, string pass, int perm) : BasicUser(us, pass, perm){}
+        // MaintainerUser(const char* us, const char* pass, int perm) : BasicUser(us, pass, perm){}
         void prova();
         bool checkLogin(vector<MaintainerUser>);
         void setupProfileWindow() override;

@@ -2,20 +2,20 @@
 
 using namespace std;
 
-const char* TrackData::getTrackName(){
+string TrackData::getTrackName(){
     return trackName;
 }
 
-char* TrackData::getImagePath(){
+string TrackData::getImagePath(){
     return imagePath;
 }
 
-void TrackData::setTrackName(const char* track){
-    strcpy(trackName, track);
-    // trackName = track;
+void TrackData::setTrackName(string track){
+    // strcpy(trackName, track);
+    trackName = track;
 }
         
-void TrackData::setImagePath(const char* path){
-    strcpy(imagePath, path);
-    // imagePath = path;
+void TrackData::setImagePath(string path){
+    // strcpy(imagePath, path);
+    imagePath = path;
 }

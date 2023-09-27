@@ -2,7 +2,7 @@
 #define IMAGE_H
 
 #include <GL/glew.h>
-#include <string.h>
+#include <string>
 #include <iostream>
 #include "stb_image.h"
 
@@ -13,17 +13,17 @@ class Image{
         int image_width = 0;
         int image_height = 0;
         GLuint image_texture = 0;
-        char filepath[64];
+        // char filepath[64];
+        string filepath;
 
         Image(){
-            // filepath = "Hockenheim2012.jpg";
-            strcpy(filepath, "Hockenheim2012.jpg");
+            filepath = "../data/Hockenheim2012.jpg";
+            // strcpy(filepath, "Hockenheim2012.jpg");
         }
 
-        Image(const char* path){
-            strcpy(filepath, path);
-            // filepath = path;
-            cout << filepath;
+        Image(string path){
+            // strcpy(filepath, path);
+            filepath = "../data/" + path;
         }
         bool LoadTextureFromFile();  
         void setSize();

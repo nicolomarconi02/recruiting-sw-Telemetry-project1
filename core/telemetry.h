@@ -25,7 +25,7 @@ public:
         trackData = new TrackData("Hockenheimring", "Hockenheim2012.jpg");
     }
 
-    TelemetryData(const char* trackName,const char* path, int n){
+    TelemetryData(string trackName,string path, int n){
         setnLap(n);
         initializeData();
         // trackData = make_unique<TrackData>(trackName, path);
@@ -47,7 +47,7 @@ public:
     void setRPM(float);
     void setnLap(int);
     void initializeData();
-    void setupTrack(char*, char*);
+    void setupTrack(string, string);
 
 private:
     float lapTime;

@@ -11,7 +11,7 @@ using namespace std;
 bool Image::LoadTextureFromFile()
 {
     // Load from file
-    unsigned char* image_data = stbi_load(filepath, &image_width, &image_height, NULL, 4);
+    unsigned char* image_data = stbi_load(filepath.c_str(), &image_width, &image_height, NULL, 4);
     if (image_data == NULL)
         return false;
 

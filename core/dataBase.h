@@ -34,15 +34,15 @@ class DataBase{
             unique_ptr<AdminUser> usr4 = make_unique<AdminUser>("pluto", "paperino", 2);
             adminLogin.push_back(move(usr4));
             // unique_ptr<TelemetryData> telemetry = make_unique<TelemetryData>("Hockenheimring", "Hockenheim2012.jpg", 5);
-            TelemetryData telemetry("Hockenheimring", "../data/Hockenheim2012.jpg", 5);
+            TelemetryData telemetry("Hockenheimring", "Hockenheim2012.jpg", 5);
             telemetryData.push_back(telemetry);
             setUser("", "", 0);
         }
         
-        void setUser(char*, char*, int);
-        void addMaintainer(char*, char*);
-        void addAdmin(char*, char*);
+        void setUser(string, string, int);
+        void addMaintainer(string, string);
+        void addAdmin(string, string);
         void removeUser(vector<bool>, vector<bool>);
-        void addTrack(char*, char*, int);
+        void addTrack(string, string, int);
         void removeTrack(vector<bool>);
 };
