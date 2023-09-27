@@ -61,7 +61,7 @@ void printInfo(DataBase* dataBase, int index, ImVec2 progressBarSize){
             ImGui::Text("ERROR IN SWITCH");
             break;
     }
-    ImGui::Text("Age: %.2f Km", dataBase->tyreData.tyreAge);
+    ImGui::Text("Age: %.2f Km", dataBase->tyreData.getTyreAge());
     ImGui::Text("State: %.2f%%", dataBase->tyreData.tyresState[index] * 100.0f);
     ImGui::Text("Temperature: %.2f °C", dataBase->tyreData.tyresTemperature[index]);
     if(index == 1)

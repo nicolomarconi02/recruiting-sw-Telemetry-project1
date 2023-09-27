@@ -39,7 +39,7 @@ void car_preview(DataBase* dataBase){
             else{
                 ImGui::Text("TYRE");
                 if(ImGui::BeginTable("TYREINFO", 2, ImGuiTableFlags_SizingFixedSame)){
-                    for(int i = 0; i < dataBase->tyreData.numTyres; i++){
+                    for(int i = 0; i < dataBase->tyreData.getNumTyres(); i++){
                         ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed, 100.0f);  
                         ImGui::TableNextColumn();           
                         switch (i)

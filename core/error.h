@@ -9,7 +9,7 @@ using namespace std;
 class Error{
     public:
         vector<const char*> electronicErrorList;
-        vector<const char*> tyreErrorList;
+        vector<string> tyreErrorList;
         vector<const char*> motorErrorList;
 };
 

@@ -6,6 +6,7 @@
 #include <GL/glew.h>
 #include "dataBase.h"
 #include "track.h"
+#include <string>
 
 void app_render(DataBase*);
 void car_preview(DataBase*);

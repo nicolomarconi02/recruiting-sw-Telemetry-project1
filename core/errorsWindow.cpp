@@ -13,7 +13,9 @@ void errors(DataBase* dataBase){
             }
         }
         if(ImGui::CollapsingHeader("TYRE")){
-            
+            for(int i = 0; i < dataBase->tyreData.error.tyreErrorList.size(); i++){
+                ImGui::Text(dataBase->tyreData.error.tyreErrorList[i].c_str());
+            }
         }
         ImGui::End();
     }   
