@@ -59,6 +59,21 @@ int main(){
     //         cout << "adminLoginmfrom main " << dataBase.adminLogin[0].username << dataBase.adminLogin[0].password << endl;
     //         fflush(stdout);
 
+    ImGui::PushStyleColor(ImGuiCol_Tab, ImVec4(202/255.0f, 180/255.0f, 2/255.0f, 1.0f));
+    ImGui::PushStyleColor(ImGuiCol_TabActive, ImVec4(202/255.0f, 209/255.0f, 2/255.0f, 1.0f));
+    ImGui::PushStyleColor(ImGuiCol_TabHovered, ImVec4(202/255.0f, 230/255.0f, 2/255.0f, 1.0f));
+    ImGui::PushStyleColor(ImGuiCol_TabUnfocused, ImVec4(202/255.0f, 180/255.0f, 2/255.0f, 1.0f));
+    ImGui::PushStyleColor(ImGuiCol_TabUnfocusedActive, ImVec4(202/255.0f, 190/255.0f, 2/255.0f, 1.0f));
+    ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(202/255.0f, 190/255.0f, 2/255.0f, 1.0f));
+    ImGui::PushStyleColor(ImGuiCol_DockingPreview, ImVec4(202/255.0f, 190/255.0f, 2/255.0f, 1.0f));
+    ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(202/255.0f, 180/255.0f, 2/255.0f, 1.0f));
+    ImGui::PushStyleColor(ImGuiCol_HeaderActive, ImVec4(202/255.0f, 209/255.0f, 2/255.0f, 1.0f));
+    ImGui::PushStyleColor(ImGuiCol_HeaderHovered, ImVec4(202/255.0f, 230/255.0f, 2/255.0f, 1.0f));
+    // ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(202/255.0f, 180/255.0f, 2/255.0f, 1.0f));
+    // ImGui::PushStyleColor(ImGuiCol_FrameBgActive, ImVec4(202/255.0f, 209/255.0f, 2/255.0f, 1.0f));
+    // ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, ImVec4(202/255.0f, 230/255.0f, 2/255.0f, 1.0f));
+    ImGui::PushStyleColor(ImGuiCol_TitleBgActive, ImVec4(202/255.0f, 209/255.0f, 2/255.0f, 1.0f));
+
     while (!glfwWindowShouldClose(window))
     {
         glfwPollEvents();

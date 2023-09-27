@@ -6,10 +6,8 @@ void TelemetryData::initializeData(){
 
     int numDataPoints = 16;  // Numero di punti dati (curve del tracciato)
     int timeInterval = 5;    // Intervallo di tempo tra i punti dati (secondi)
-    int numLap = 5;
     srand(time(NULL));
-
-    for(int i = 0; i < numLap; i++){
+    for(int i = 0; i < getnLap(); i++){
         vector<TelemetryData> telemetryData;
         for (int j = 0; j < numDataPoints; j++) {
             float time = j * timeInterval;
@@ -32,4 +30,21 @@ float TelemetryData::getSpeed(){
 
 int TelemetryData::getRPM(){
     return rpm;
+}
+
+int TelemetryData::getnLap(){
+    return nLap;
+}
+
+void TelemetryData::setlapTime(float time){
+    lapTime = time;
+}
+void TelemetryData::setSpeed(float spd){
+    speed = spd;
+}
+void TelemetryData::setRPM(float r){
+    rpm = r;
+}
+void TelemetryData::setnLap(int n){
+    nLap = n;
 }

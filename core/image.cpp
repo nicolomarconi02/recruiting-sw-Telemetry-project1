@@ -2,10 +2,10 @@
 
 using namespace std;
 
-Image::Image(const char* path){
-    filepath = path;
-    cout << filepath;
-}
+// Image::Image(const char* path){
+//     filepath = path;
+//     cout << filepath;
+// }
 
 // Simple helper function to load an image into a OpenGL texture with common settings
 bool Image::LoadTextureFromFile()

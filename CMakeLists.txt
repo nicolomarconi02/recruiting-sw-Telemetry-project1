@@ -29,6 +29,7 @@ add_library(
     ${CMAKE_CURRENT_SOURCE_DIR}/core/motor.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/core/telemetry.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/core/tyre.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/track.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/core/dataBase.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/core/basicUser.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/core/maintainerUser.cpp
