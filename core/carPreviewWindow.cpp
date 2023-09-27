@@ -22,10 +22,10 @@ void car_preview(DataBase* dataBase){
             ImGui::BeginTooltip();
             if((io.MousePos.x < (xMin + imDim * 1/3))){
                 ImGui::Text("MOTOR");
-                ImGui::Text("motorState: %.2f%%", dataBase->motorData.motorState * 100);
-                ImGui::Text("motorTemperature: %.2f °C", dataBase->motorData.motorTemperature);
-                ImGui::Text("inverterState: %.2f%%", dataBase->motorData.inverterState * 100);
-                ImGui::Text("inverterTemperature: %.2f °C", dataBase->motorData.inverterTemperature);
+                ImGui::Text("motorState: %.2f%%", dataBase->motorData.getMotorState() * 100);
+                ImGui::Text("motorTemperature: %.2f °C", dataBase->motorData.getMotorTemperature());
+                ImGui::Text("inverterState: %.2f%%", dataBase->motorData.getInverterState() * 100);
+                ImGui::Text("inverterTemperature: %.2f °C", dataBase->motorData.getInverterTemperature());
 
             }
             else if((io.MousePos.x >= (xMin + imDim * 1/3)) && (io.MousePos.x < (xMin + imDim * 2/3))){
