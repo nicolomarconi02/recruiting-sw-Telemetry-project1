@@ -10,15 +10,11 @@ using namespace std;
 
 class TrackData{
     public:
-        // unique_ptr<Image> image;
         bool isImageOpen = false;
         Image* image = NULL;
         TrackData(string name, string path){
             setTrackName(name);
             setImagePath(path);
-            // image = make_unique<Image>(path);
-            cout << "TRACKDATA CONSTR name " << name << " path " << path << endl;
-            fflush(stdout);
             image = new Image(path);
         }
 

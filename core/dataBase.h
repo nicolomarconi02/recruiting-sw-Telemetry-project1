@@ -25,15 +25,14 @@ class DataBase{
         MotorData motorData;
 
         DataBase(){
-            unique_ptr<MaintainerUser> usr1 = make_unique<MaintainerUser>("pippo", "paperino", 1);
+            unique_ptr<MaintainerUser> usr1 = make_unique<MaintainerUser>("maintainer", "maintainer", 1);
             maintainerLogin.push_back(move(usr1));
-            unique_ptr<AdminUser> usr2 = make_unique<AdminUser>("minnie", "paperino", 2);
+            unique_ptr<AdminUser> usr2 = make_unique<AdminUser>("admin", "admin", 2);
             adminLogin.push_back(move(usr2));
             unique_ptr<MaintainerUser> usr3 = make_unique<MaintainerUser>("tolopino", "paperino", 1);
             maintainerLogin.push_back(move(usr3));
             unique_ptr<AdminUser> usr4 = make_unique<AdminUser>("pluto", "paperino", 2);
             adminLogin.push_back(move(usr4));
-            // unique_ptr<TelemetryData> telemetry = make_unique<TelemetryData>("Hockenheimring", "Hockenheim2012.jpg", 5);
             TelemetryData telemetry("Hockenheimring", "Hockenheim2012.jpg", 5);
             telemetryData.push_back(telemetry);
             setUser("", "", 0);

@@ -10,6 +10,16 @@
 #include <string>
 #include <memory>
 
+#define CONVERTER 255.0f
+#define YELLOW_LIGHT ImVec4(212/CONVERTER, 230/CONVERTER, 30/CONVERTER, 1.0f)
+#define YELLOW_MID_LIGHT ImVec4(188/CONVERTER, 206/CONVERTER, 8/CONVERTER, 1.0f)
+#define YELLOW_MID ImVec4(222/CONVERTER, 211/CONVERTER, 21/CONVERTER, 1.0f)
+#define YELLOW_MID_DARK ImVec4(255/CONVERTER, 173/CONVERTER, 51/CONVERTER, 1.0f)
+#define YELLOW_DARK ImVec4(255/CONVERTER, 153/CONVERTER, 0/CONVERTER, 1.0f)
+#define ORANGE_LIGHT ImVec4(191/CONVERTER, 149/CONVERTER, 0/CONVERTER, 1.0f)
+#define ORANGE_MID ImVec4(147/CONVERTER, 115/CONVERTER, 0/CONVERTER, 1.0f)
+#define ORANGE_DARK ImVec4(85/CONVERTER, 67/CONVERTER, 0/CONVERTER, 1.0f)
+
 using namespace std;
 
 class BasicUser{
@@ -17,23 +27,18 @@ class BasicUser{
         int permission;
         string username;
         string password;
-        // char username[64];
-        // char password[64];
+
         BasicUser(string us, string pass, int perm){
             permission = perm;
             username = us;
             password = pass;
         }
-        // BasicUser(const char* us, const char* pass, int perm){
-        //     permission = perm;
-        //     strncpy(username, us, sizeof(username) - 1);
-        //     username[sizeof(username) - 1] = '\0'; // Ensure null-termination.
-            
-        //     strncpy(password, pass, sizeof(password) - 1);
-        //     password[sizeof(password) - 1] = '\0'; // Ensure null-termination.
-        // }
 
         virtual void setupProfileWindow();
+        virtual void setupStyle();
+        void removeStyle();
+    private:
+        
 };
 
 #endif 

@@ -15,6 +15,8 @@ static int e = 1;
 int sizeMaintainer = 0;
 int sizeAdmin = 0;
 
+string messageTextLogin = "";
+string messageTextAdd = "";
 
 vector<bool> maintainerSelection;
 vector<bool> adminSelection;
@@ -49,30 +51,28 @@ void profile(DataBase* dataBase){
                 for(int i = 0; i < dataBase->maintainerLogin.size() && !userFound; i++){
                     MaintainerUser* maintainerPtr = dataBase->maintainerLogin[i].get();
                     if(strcmp(username, maintainerPtr->username.c_str()) == 0 && strcmp(password, maintainerPtr->password.c_str()) == 0){
-                        cout << "maintainer riconosciuto" << endl;
                         dataBase->setUser(username, password, 1);
                         dataBase->user->setupProfileWindow();
-                        cout << "permesso user " << dataBase->user->permission << endl;
                         userFound = true;
                     }
                     else{
-                        cout << "maintainer non riconosciuto" << endl;
+                        messageTextLogin = "maintainer not found";
                     }
                 } 
                 for(int i = 0; i < dataBase->adminLogin.size() && !userFound; i++){
                     AdminUser* adminPtr = dataBase->adminLogin[i].get();
                     if(strcmp(username, adminPtr->username.c_str()) == 0 && strcmp(password, adminPtr->password.c_str()) == 0){
-                        cout << "admin riconosciuto" << endl;
                         dataBase->setUser(username, password, 2);
                         dataBase->user->setupProfileWindow();
                         userFound = true;
                     }
                     else{
-                        cout << "admin non riconosciuto" << endl;
+                        messageTextLogin = "admin not found";
                     }
                 } 
                 if(!userFound){
                     mostraTestoLogin = true;
+                    messageTextLogin = "no users match the credentials";
                 }
             }
             ImGui::SameLine();
@@ -83,7 +83,7 @@ void profile(DataBase* dataBase){
                 userFound = false;
             }
             if(mostraTestoLogin){
-                ImGui::Text("Non esiste nessun user con queste credenziali");
+                ImGui::Text(messageTextLogin.c_str());
             }
         }
         else{
@@ -104,6 +104,7 @@ void profile(DataBase* dataBase){
                 strcpy(password, "");
                 mostraTestoLogin = false;
                 userFound = false;
+                dataBase->user->setupProfileWindow();
             }
             if(dataBase->user->permission == 2){
                 if(ImGui::CollapsingHeader("Member Management")){
@@ -158,23 +159,30 @@ void profile(DataBase* dataBase){
                         e = 2;
                     }
                     if(mostraTestoAdd){
-                        ImGui::Text("Esiste gia' un utente con quel nome");
+                        ImGui::Text(messageTextAdd.c_str());
                     }
 
                     if(ImGui::Button("Add User")){
-                        if(!checkUser(dataBase, newusername)){
-                            if(e == 1){
-                                dataBase->addMaintainer(newusername, newpassword);
+                        if(strcmp(newusername, "") != 0 && strcmp(newpassword, "") != 0){
+                            mostraTestoAdd = false;
+                            if(!checkUser(dataBase, newusername)){
+                                if(e == 1){
+                                    dataBase->addMaintainer(newusername, newpassword);
+                                }
+                                else{
+                                    dataBase->addAdmin(newusername, newpassword);
+                                }
+                                mostraTestoAdd = false;
                             }
                             else{
-                                dataBase->addAdmin(newusername, newpassword);
+                                mostraTestoAdd = true;
+                                messageTextAdd = "A user with those credentials already exists";
                             }
-                            mostraTestoAdd = false;
                         }
                         else{
                             mostraTestoAdd = true;
+                            messageTextAdd = "You have to insert a username and a password";
                         }
-                        
                     }
                     if(ImGui::Button("Remove Selected User")){
                         dataBase->removeUser(maintainerSelection, adminSelection);

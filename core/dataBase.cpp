@@ -20,7 +20,6 @@ void DataBase::setUser(string username, string password, int permission){
         default:
             break;
     }
-    cout << "print username: " << user->username << " password: " << user->password << endl;
 }
 
 void DataBase::addMaintainer(string usr, string psw){

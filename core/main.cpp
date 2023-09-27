@@ -51,28 +51,9 @@ int main(){
     style.FrameRounding = 12;
     style.ScrollbarRounding = 12;
 
-    //genero dati per utente
     DataBase dataBase;
-    // cout << "&database " << &dataBase << endl;
-    // cout << "maintainer from main " << dataBase.maintainerLogin[0].username << dataBase.maintainerLogin[0].password << endl;
-    //         fflush(stdout);
-    //         cout << "adminLoginmfrom main " << dataBase.adminLogin[0].username << dataBase.adminLogin[0].password << endl;
-    //         fflush(stdout);
 
-    ImGui::PushStyleColor(ImGuiCol_Tab, ImVec4(202/255.0f, 180/255.0f, 2/255.0f, 1.0f));
-    ImGui::PushStyleColor(ImGuiCol_TabActive, ImVec4(202/255.0f, 209/255.0f, 2/255.0f, 1.0f));
-    ImGui::PushStyleColor(ImGuiCol_TabHovered, ImVec4(202/255.0f, 230/255.0f, 2/255.0f, 1.0f));
-    ImGui::PushStyleColor(ImGuiCol_TabUnfocused, ImVec4(202/255.0f, 180/255.0f, 2/255.0f, 1.0f));
-    ImGui::PushStyleColor(ImGuiCol_TabUnfocusedActive, ImVec4(202/255.0f, 190/255.0f, 2/255.0f, 1.0f));
-    ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(202/255.0f, 190/255.0f, 2/255.0f, 1.0f));
-    ImGui::PushStyleColor(ImGuiCol_DockingPreview, ImVec4(202/255.0f, 190/255.0f, 2/255.0f, 1.0f));
-    ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(202/255.0f, 180/255.0f, 2/255.0f, 1.0f));
-    ImGui::PushStyleColor(ImGuiCol_HeaderActive, ImVec4(202/255.0f, 209/255.0f, 2/255.0f, 1.0f));
-    ImGui::PushStyleColor(ImGuiCol_HeaderHovered, ImVec4(202/255.0f, 230/255.0f, 2/255.0f, 1.0f));
-    // ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(202/255.0f, 180/255.0f, 2/255.0f, 1.0f));
-    // ImGui::PushStyleColor(ImGuiCol_FrameBgActive, ImVec4(202/255.0f, 209/255.0f, 2/255.0f, 1.0f));
-    // ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, ImVec4(202/255.0f, 230/255.0f, 2/255.0f, 1.0f));
-    ImGui::PushStyleColor(ImGuiCol_TitleBgActive, ImVec4(202/255.0f, 209/255.0f, 2/255.0f, 1.0f));
+    dataBase.user->setupProfileWindow();
 
     while (!glfwWindowShouldClose(window))
     {
@@ -85,13 +66,6 @@ int main(){
         // renders tabs/buttons/...
         DockSpaceOverViewport(GetMainViewport());
         ShowDemoWindow();
-        // if(ret){
-        //     ImGui::Begin("OpenGL Texture Text");
-        //     ImGui::Text("pointer = %p", my_image_texture);
-        //     ImGui::Text("size = %d x %d", my_image_width, my_image_height);
-        //     ImGui::Image((void*)(intptr_t)my_image_texture, ImVec2(my_image_width, my_image_height));
-        //     ImGui::End();
-        // }
 
         app_render(&dataBase);
 

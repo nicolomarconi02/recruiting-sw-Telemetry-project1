@@ -2,10 +2,30 @@
 
 using namespace std;
 
-void MaintainerUser::prova(){
-    cout << "prova" << endl;
+void MaintainerUser::setupProfileWindow(){
+    removeStyle();
+    setupStyle();
 }
 
-void MaintainerUser::setupProfileWindow(){
-    cout << "printText() maintainer" << endl;
+void MaintainerUser::setupStyle(){
+    ImGui::PushStyleColor(ImGuiCol_Tab, GRAY_MID_DARK);
+    ImGui::PushStyleColor(ImGuiCol_TabActive, GRAY_DARK_DEEP);
+    ImGui::PushStyleColor(ImGuiCol_TabHovered, GRAY_MID);
+    ImGui::PushStyleColor(ImGuiCol_TabUnfocused, GRAY_DARK);
+    ImGui::PushStyleColor(ImGuiCol_TabUnfocusedActive, GRAY_DARK);
+    ImGui::PushStyleColor(ImGuiCol_Border, GRAY_MID);
+    ImGui::PushStyleColor(ImGuiCol_DockingPreview, GRAY_MID_DARK);
+    ImGui::PushStyleColor(ImGuiCol_Header, GRAY_MID);
+    ImGui::PushStyleColor(ImGuiCol_HeaderActive, GRAY_MID_DARK);
+    ImGui::PushStyleColor(ImGuiCol_HeaderHovered, GRAY_MID_LIGHT);
+    ImGui::PushStyleColor(ImGuiCol_FrameBg, BLACK);
+    ImGui::PushStyleColor(ImGuiCol_FrameBgActive, BLACK_LIGHT);
+    ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, GRAY_DARK_DEEP);
+    ImGui::PushStyleColor(ImGuiCol_TitleBgActive, GRAY_LIGHT);
+    ImGui::PushStyleColor(ImGuiCol_Button, BLACK);
+    ImGui::PushStyleColor(ImGuiCol_ButtonActive, BLACK_LIGHT);
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, GRAY_DARK_DEEP);
+    ImGui::PushStyleColor(ImGuiCol_SliderGrab, GRAY_MID_DARK);
+    ImGui::PushStyleColor(ImGuiCol_SliderGrabActive, GRAY_MID);
+    ImGui::PushStyleColor(ImGuiCol_CheckMark, GRAY_MID);
 }

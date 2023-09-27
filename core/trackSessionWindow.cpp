@@ -1,6 +1,7 @@
 #include <GL/glew.h>
 #include "app.h"
 #include "image.h"
+#include <string>
 
 static int currentLap = 1;
 static int currentTrack = 1;
@@ -9,10 +10,12 @@ static char imagePath[64] = "";
 int numLap = 0;
 int sizeTrackSelection = 0;
 bool mostra = false;
+string message = "";
 vector<bool> trackSelection;
 void initializeSelection(int);
 void clearSelection(int);
 bool checkName(DataBase*, string);
+void HelpMarker(const char*);
 
 void track_session(DataBase* dataBase){
     if(ImGui::Begin("Track Session", NULL, ImGuiWindowFlags_AlwaysAutoResize)){
@@ -50,24 +53,31 @@ void track_session(DataBase* dataBase){
                         ImGui::EndListBox();
                     }
                     ImGui::TreePop();
-                    if(mostra){
-                        ImGui::Text("Esiste gia' un tracciato con questo nome");
-                    }
                 }
                 if(ImGui::TreeNode("Add Track")){
                     ImGui::InputText("Track name", trackName, 64);
                     ImGui::InputText("Image path", imagePath, 64);
+                    ImGui::SameLine();
+                    HelpMarker("The file must be in the data folder, you must specify the correct file name in order to display the image");
                     ImGui::InputInt("Num Lap", &numLap);
                     if(numLap < 1){
                         numLap = 1;
                     }
                     if(ImGui::Button("Add Track")){
-                        if(!checkName(dataBase,trackName)){
-                            dataBase->addTrack(trackName, imagePath, numLap);
+                        if(strcmp(trackName, "") != 0 && strcmp(imagePath, "") != 0){
                             mostra = false;
+                            if(!checkName(dataBase,trackName)){
+                                dataBase->addTrack(trackName, imagePath, numLap);
+                                mostra = false;
+                            }
+                            else{
+                                mostra = true;
+                                message = "A track with that name already exists";
+                            }
                         }
                         else{
                             mostra = true;
+                            message = "You have to insert a track name and a image path";
                         }
                     }
                     ImGui::SameLine();
@@ -78,6 +88,9 @@ void track_session(DataBase* dataBase){
                         }
                     }
                     ImGui::TreePop();
+                }
+                if(mostra){
+                        ImGui::Text(message.c_str());
                 }
             }
         }
