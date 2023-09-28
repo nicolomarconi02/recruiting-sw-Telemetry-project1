@@ -37,21 +37,36 @@ In base a se un utente è un Basic user, un Maintainer o un Admin avrà uno stil
 Per l'inserimento delle immagini nell'applicazione è stata utilizzata la libreria [stb_image.h](https://github.com/nothings/stb). 
 
 ***ATTENZIONE**: per caricare le immagini all'interno dell'applicazione è necessario che queste siano presenti nella cartella [data](./data/).*
-## Istruzioni per l'uso
+## Prerequisiti
 
+- `git` e account [GitHub](https://github.com)
+- C/C++ toolchain, con CMake
+- OpenGL
+- GLEW
+- GLFW3
+
+Per Debian / Ubuntu puoi utilizzare:
+
+```bash
+sudo apt install build-essential cmake libglfw3-dev libglew-dev mesa-utils
+```
+
+## Setup
 - scaricare ed estrarre i [file del progetto](
 https://github.com/nicolomarconi02/recruiting-sw-Telemetry-project1/archive/refs/heads/main.zip)
+
+## Building
 - per eseguire l'applicazione è possibile utilizzare il file [run.sh](run.sh) 
     - se [run.sh](run.sh) non è eseguibile è necessario utilizzare:
 ```bash
-chmode +x run.sh
+chmod +x run.sh
 ./run.sh
 ```
 - è possibile inoltre utilizzare il file [build.sh](/build.sh) per compilare il programma senza eseguirlo automaticamente 
     - se [build.sh](/build.sh) non è eseguibile è necessario utilizzare:
 
 ```bash
-chmode +x build.sh
+chmod +x build.sh
 ./build.sh
 ```
 - In questo caso per eseguire l'applicazione è necessario eseguire questi ulteriori comandi:
